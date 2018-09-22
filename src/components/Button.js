@@ -20,6 +20,6 @@ const styles = {
     width: 150,
     height: 50,
     cursor: 'pointer',
-    backgroundColor: colors.SECONDARY,
+    backgroundColor: colors.PRIMARY,
   }),
 }

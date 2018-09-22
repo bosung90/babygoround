@@ -13,7 +13,7 @@ const styles = {
     flexDirection: 'column',
   }),
   // loginButton: css({
-  //   backgroundColor: colors.SECONDARY,
+  //   backgroundColor: colors.PRIMARY,
   //   width: 150,
   //   height: 50,
   // }),

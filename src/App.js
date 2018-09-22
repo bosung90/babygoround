@@ -38,6 +38,9 @@ class App extends Component {
         <button onClick={() => dispatch.count.increment(1)}>
           Increment Count
         </button>
+        <button onClick={() => dispatch.count.incrementAsync()}>
+          Increment Count Async
+        </button>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>

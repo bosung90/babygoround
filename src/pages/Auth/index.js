@@ -9,6 +9,7 @@ export default class Auth extends React.Component {
     return (
       <View fill column center w={700}>
         {/* <div className={styles.loginButton}>Login</div> */}
+        <View row center />
         <Input label={'Username'} />
         <Input label={'Password'} />
         <View row>

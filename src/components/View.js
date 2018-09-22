@@ -90,7 +90,7 @@ export default class View extends React.Component {
           style.push(css({ borderRadius: props[key] }))
           break
         case 'bc':
-          style.push(css({ borderColor: props[key] }))
+          style.push(css({ border: 'solid', borderColor: props[key] }))
           break
         case 'bw':
           style.push(css({ borderWidth: props[key] }))
@@ -142,5 +142,14 @@ const styles = {
   center: css({
     alignItems: 'center',
     justifyContent: 'center',
+  }),
+  justifyStart: css({
+    justifyContent: 'justify-start',
+  }),
+  justifyBetween: css({
+    justifyContent: 'justify-between',
+  }),
+  justifyEnd: css({
+    justifyContent: 'justify-end',
   }),
 }

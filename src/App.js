@@ -34,7 +34,7 @@ class App extends Component {
             return <span key={user.id}>{user.name}</span>
           })}
         </p>
-        <Select selector={state => state.count} />
+        <Select selector={dispatch.count.getCount} />
         <button onClick={() => dispatch.count.increment(1)}>
           Increment Count
         </button>

@@ -5,11 +5,15 @@ import { colors } from 'common'
 
 export default class Button extends React.Component {
   render() {
-    const { style, className, ...props } = this.props
+    const { style, className, secondary, ...props } = this.props
     return (
       <View
         style={style}
-        className={css(styles.button, className)}
+        className={css(
+          styles.button,
+          secondary === true && styles.secondary,
+          className
+        )}
         center
         {...props}
       >
@@ -27,5 +31,13 @@ const styles = {
     height: 50,
     cursor: 'pointer',
     backgroundColor: colors.PRIMARY,
+  }),
+  secondary: css({
+    backgroundColor: 'transparent',
+    borderRadius: 5,
+    border: '1px solid ' + colors.PRIMARY,
+    color: colors.PRIMARY,
+    height: 40,
+    width: 100,
   }),
 }

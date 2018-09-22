@@ -15,6 +15,7 @@ export default class Button extends React.Component {
 
 const styles = {
   button: css({
+    display: 'flex',
     width: 150,
     height: 50,
     cursor: 'pointer',

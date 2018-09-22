@@ -1,7 +1,140 @@
 import React from 'react'
+import { css } from 'react-emotion'
 
 export default class View extends React.Component {
   render() {
-    return <div>View</div>
+    const { children, style: customStyle, ...props } = this.props
+    // 1. Apply base style
+    const style = [styles.baseStyle]
+    // 2. Apply prop styles
+    const keys = Object.keys(props)
+    for (const key of keys) {
+      if (props[key] === true && styles[key]) {
+        style.push(styles[key])
+      }
+      // Check if key is any of the following
+      // ph - padding horizontal
+      // pv - padding vertical
+      // pl - padding left
+      // pr - padding right
+      // pt - padding top
+      // pb - padding bottom
+      // p - padding
+      // same for margin but starts with m instead of p
+      // w - width
+      // h - height
+      // bg - backgroundColor
+      // br - borderRadius
+      // if so then the value is the corresponding style value
+      // ex. ph={20} -> style={{paddingHorizontal: 20}}
+      // ex. w='100%' -> style={{width: '100%'}}
+
+      switch (key) {
+        case 'mh':
+          style.push(css({ marginHorizontal: props[key] }))
+          break
+        case 'mv':
+          style.push(css({ marginVertical: props[key] }))
+          break
+        case 'mt':
+          style.push(css({ marginTop: props[key] }))
+          break
+        case 'mb':
+          style.push(css({ marginBottom: props[key] }))
+          break
+        case 'ml':
+          style.push(css({ marginLeft: props[key] }))
+          break
+        case 'mr':
+          style.push(css({ marginRight: props[key] }))
+          break
+        case 'm':
+          style.push(css({ margin: props[key] }))
+          break
+        case 'ph':
+          style.push(css({ paddingHorizontal: props[key] }))
+          break
+        case 'pv':
+          style.push(css({ paddingVertical: props[key] }))
+          break
+        case 'pt':
+          style.push(css({ paddingTop: props[key] }))
+          break
+        case 'pb':
+          style.push(css({ paddingBottom: props[key] }))
+          break
+        case 'pl':
+          style.push(css({ paddingLeft: props[key] }))
+          break
+        case 'pr':
+          style.push(css({ paddingRight: props[key] }))
+          break
+        case 'p':
+          style.push(css({ padding: props[key] }))
+          break
+        case 'w':
+          style.push(css({ width: props[key] }))
+          break
+        case 'h':
+          style.push(css({ height: props[key] }))
+          break
+        case 'bg':
+          style.push(css({ backgroundColor: props[key] }))
+          break
+        case 'br':
+          style.push(css({ borderRadius: props[key] }))
+          break
+        case 'bc':
+          style.push(css({ borderColor: props[key] }))
+          break
+        case 'bw':
+          style.push(css({ borderWidth: props[key] }))
+          break
+        case 'bbw':
+          style.push(css({ borderBottomWidth: props[key] }))
+          break
+        case 'btw':
+          style.push(css({ borderTopWidth: props[key] }))
+          break
+        case 'blw':
+          style.push(css({ borderLeftWidth: props[key] }))
+          break
+        case 'brw':
+          style.push(css({ borderRightWidth: props[key] }))
+          break
+        case 'fill':
+          if (props[key] !== true) {
+            style.push(css({ flex: props[key] }))
+          }
+          break
+        default:
+          break
+      }
+    }
+    // 3. Apply customStyle passed down as this.props.style
+    style.push(customStyle)
+    return <div className={css(style)}>{children}</div>
   }
+}
+
+const styles = {
+  flex: css({
+    display: 'flex',
+  }),
+  fill: css({
+    display: 'flex',
+    flex: 1,
+  }),
+  row: css({
+    display: 'flex',
+    flexDirection: 'row',
+  }),
+  column: css({
+    display: 'flex',
+    flexDirection: 'column',
+  }),
+  center: css({
+    alignItems: 'center',
+    justifyContent: 'center',
+  }),
 }

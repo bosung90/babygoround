@@ -1,3 +1,5 @@
+import user from './user'
+
 export default {
   count: {
     state: 0,
@@ -16,4 +18,5 @@ export default {
       },
     }),
   },
+  user,
 }

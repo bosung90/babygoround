@@ -8,6 +8,7 @@ import history from './history'
 import { Header } from 'components'
 import { Provider } from 'react-redux'
 import { store } from 'store'
+import * as pages from 'pages'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -17,6 +18,8 @@ ReactDOM.render(
         <Switch>
           <Route exact path="/" component={App} />
           <Route exact path="/something" component={App} />
+          <Route exact path="/auth" component={pages.Auth} />
+          <Route exact path="/form" component={pages.Form} />
           {/* <Route path="/something" component={add your component here}/> */}
         </Switch>
       </div>

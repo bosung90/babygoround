@@ -3,7 +3,12 @@ import { css } from 'react-emotion'
 
 export default class View extends React.Component {
   render() {
-    const { children, style: customStyle, ...props } = this.props
+    const {
+      children,
+      style: customStyle,
+      className: customClassName,
+      ...props
+    } = this.props
     // 1. Apply base style
     const style = [styles.baseStyle]
     // 2. Apply prop styles
@@ -113,6 +118,7 @@ export default class View extends React.Component {
     }
     // 3. Apply customStyle passed down as this.props.style
     style.push(customStyle)
+    style.push(customClassName)
     return <div className={css(style)}>{children}</div>
   }
 }

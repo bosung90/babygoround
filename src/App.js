@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { firestore } from 'firebase/config'
+import Select from 'cf-select'
+import { dispatch } from 'store'
 
 class App extends Component {
   state = { users: [] }
@@ -32,6 +34,10 @@ class App extends Component {
             return <span key={user.id}>{user.name}</span>
           })}
         </p>
+        <Select selector={state => state.count} />
+        <button onClick={() => dispatch.count.increment(1)}>
+          Increment Count
+        </button>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>

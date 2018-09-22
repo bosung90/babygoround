@@ -28,7 +28,6 @@ const styles = {
   logoButton: css({
     backgroundColor: colors.DISABLED,
     color: colors.PRIMARY,
-    width: 150,
-    height: 50,
+    width: 200,
   }),
 }

@@ -5,8 +5,14 @@ import { colors } from 'common'
 
 export default class Button extends React.Component {
   render() {
+    const { style, className, ...props } = this.props
     return (
-      <View className={styles.button} center>
+      <View
+        style={style}
+        className={css(styles.button, className)}
+        center
+        {...props}
+      >
         {this.props.children}
       </View>
     )

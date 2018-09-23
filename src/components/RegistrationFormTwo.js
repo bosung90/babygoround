@@ -14,7 +14,7 @@ export default withRouter(
       return (
         <div className={styles.container}>
           <Progress pagenum={2} />
-          <div className={styles.header}>REQUIRED ITEMS</div>
+          <div className={styles.header} style={{marginTop:"2em"}}>REQUIRED ITEMS</div>
           <div className={equip.container}>
             <Select selector={state => state.Equipments}>
               {Equipments => {
@@ -32,10 +32,12 @@ export default withRouter(
                       <label htmlFor={itemId}>
                         <div className={equip.itemContainer}>
                           <div className={equip.wrapper}>
-                            <img
-                              alt="equipment"
-                              src={Equipments[itemId].imageURL}
-                            />
+                            <div className={equip.imageContainer}>
+                                <img
+                                alt="equipment"
+                                src={Equipments[itemId].imageURL}
+                                />
+                            </div>
                             <div className={equip.itemLabel}>
                               {Equipments[itemId].type}
                             </div>
@@ -134,7 +136,7 @@ const equip = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    alignItems: 'center',
+    justifyContent: "center",
     margin: '0 12%',
   }),
   itemContainer: css({
@@ -158,6 +160,10 @@ const equip = {
   }),
   item: css({
     margin: '0.25em',
+  }),
+  imageContainer: css({
+      minWidth: "100px",
+      height: "100px"
   }),
   checkbox: css({
     height: '1em',
@@ -204,13 +210,13 @@ const summary = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    margin: '5em, 10%, 0, 10%',
+    margin: '2em 10% 4em 10%',
   }),
   text: css({
     color: colors.LIGHTGRAY,
     borderRight: '1px solid',
     borderColor: colors.PRIMARY,
     paddingRight: '2em',
-    PaddingLeft: '2em',
+    paddingLeft: '2em',
   }),
 }

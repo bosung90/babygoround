@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'components'
+import { View, Label } from 'components'
 import { colors } from 'common'
 
 export default class UserInfoRow extends React.Component {
@@ -7,9 +7,9 @@ export default class UserInfoRow extends React.Component {
     const { label, value, ...props } = this.props
     return (
       <View row h={25} alignCenter style={{ marginBottom: 10 }}>
-        <View w={120} mr={35} style={{ textAlign: 'end', color: colors.LABEL }}>
+        <Label w={120} mr={35}>
           {label}
-        </View>
+        </Label>
         <View>{value}</View>
       </View>
     )

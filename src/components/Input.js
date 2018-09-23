@@ -1,14 +1,14 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { colors } from 'common'
-import { View } from 'components'
+import { View, Label } from 'components'
 
 export default class Input extends React.Component {
   render() {
     const { label, style, ...props } = this.props
     return (
       <View alignCenter style={style} row justifyBetween {...props}>
-        <View style={styles.label}>{label}</View>
+        <Label>{label}</Label>
         <View>
           <input className={styles.input} />
         </View>
@@ -18,10 +18,6 @@ export default class Input extends React.Component {
 }
 
 const styles = {
-  label: css({
-    fontSize: 18,
-    color: colors.LABEL,
-  }),
   input: css({
     height: 35,
     width: 350,

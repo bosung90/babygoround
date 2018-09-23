@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
+import { View } from 'components'
 import { colors } from '../common/index'
 import { firestore } from 'firebase/config'
 import Select from 'cf-select'
@@ -18,19 +19,24 @@ class RegistrationFormTwo extends Component {
               return equipment.map((item, index) => {
                 return (
                   <Select key={index} selector={item.imageURL !== 'na'}>
-                    <div className={equip.itemContainer}>
-                      <div className={equip.wrapper}>
-                        <img alt="itemImage" src={item.imageURL} />
-                        <div className={equip.itemLabel}>{item.type}</div>
-                      </div>
-                    </div>
-                    <input
-                      type="checkbox"
-                      className={equip.checkbox}
-                      onChange={e =>
-                        this.setState({ [item.id]: e.target.checked })
-                      }
-                    />
+                    <View row alignCenter>
+                      <label htmlFor={item.id}>
+                        <div className={equip.itemContainer}>
+                          <div className={equip.wrapper}>
+                            <img alt="itemImage" src={item.imageURL} />
+                            <div className={equip.itemLabel}>{item.type}</div>
+                          </div>
+                        </div>
+                      </label>
+                      <input
+                        type="checkbox"
+                        className={equip.checkbox}
+                        onChange={e =>
+                          this.setState({ [item.id]: e.target.checked })
+                        }
+                        id={item.id}
+                      />
+                    </View>
                   </Select>
                 )
               })
@@ -107,8 +113,7 @@ const equip = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 15%',
+    margin: '0 12%',
   }),
   itemContainer: css({
     display: 'flex',
@@ -144,14 +149,12 @@ const endbutton = {
   container: css({
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
   }),
   wrapper: css({
-    margin: '2em',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
   }),
   button: css({
     width: '130px',
@@ -159,9 +162,9 @@ const endbutton = {
     borderRadius: '5px',
     fontSize: '16px',
     color: 'white',
-    margin: '1em',
     backgroundColor: colors.PRIMARY,
     border: 'none',
+    margin: '1em',
   }),
   buttonInverse: css({
     width: '130px',

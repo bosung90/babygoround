@@ -4,15 +4,17 @@ export default {
   state: {
     email: null,
     id: null,
+    loading: true,
   },
   reducers: {
     setUser(state, payload) {
-      return payload
+      return { ...payload, loading: false }
     },
     unsetUser() {
       return {
         email: null,
         id: null,
+        loading: false,
       }
     },
     setName(state, payload) {

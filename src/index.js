@@ -18,9 +18,15 @@ ReactDOM.render(
   <Provider store={store}>
     <View fill column>
       <FirestoreSync />
-      <Select selector={dispatch.User.getIsLoggedIn}>
-        {getIsLoggedIn =>
-          getIsLoggedIn ? (
+      <Select
+        selector={{
+          isLoggedIn: dispatch.User.getIsLoggedIn,
+          loading: state => state.User.loading || state.Equipments.loading,
+        }}
+      >
+        {({ isLoggedIn, loading }) => {
+          if (loading) return <View>Loading...</View>
+          return isLoggedIn ? (
             <Router history={history}>
               <div>
                 <Header />
@@ -50,7 +56,7 @@ ReactDOM.render(
           ) : (
             <pages.Auth />
           )
-        }
+        }}
       </Select>
     </View>
   </Provider>,

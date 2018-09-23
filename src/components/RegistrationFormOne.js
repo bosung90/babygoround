@@ -4,6 +4,7 @@ import { colors } from '../common/index'
 import Select from 'cf-select'
 import { withRouter } from 'react-router-dom'
 import { firestore } from 'firebase/config'
+import { dispatch } from 'store'
 
 export default withRouter(
   class RegistrationFormOne extends Component {
@@ -27,7 +28,7 @@ export default withRouter(
 
       firestore
         .collection('Users')
-        .doc('pDvyJvfpwpUyo3NPc5nG')
+        .doc(dispatch.User.getUserId())
         .set(
           {
             dateOfBirthBaby,

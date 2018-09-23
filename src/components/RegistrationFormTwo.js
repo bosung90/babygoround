@@ -24,7 +24,7 @@ class RegistrationFormTwo extends Component {
                   <Select selector={item.imageURL != 'na'}>
                     <div className={equip.itemContainer}>
                       <div className={equip.wrapper}>
-                        <img src={item.imageURL} />
+                        <img alt="equipment" src={item.imageURL} />
                         <div className={equip.itemLabel}>{item.type}</div>
                       </div>
                     </div>
@@ -38,8 +38,6 @@ class RegistrationFormTwo extends Component {
                   </Select>
                 )
               })
-              console.log(Equipments)
-              console.log(equipment)
             }}
           </Select>
         </div>
@@ -107,8 +105,7 @@ const equip = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'center',
-    margin: '0 15%',
+    margin: '0 12%',
   }),
   itemContainer: css({
     display: 'flex',
@@ -144,14 +141,12 @@ const endbutton = {
   container: css({
     display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'center',
   }),
   wrapper: css({
-    margin: '2em',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
   }),
   button: css({
     width: '130px',
@@ -159,9 +154,9 @@ const endbutton = {
     borderRadius: '5px',
     fontSize: '16px',
     color: 'white',
-    margin: '1em',
     backgroundColor: colors.PRIMARY,
     border: 'none',
+    margin: '1em',
   }),
   buttonInverse: css({
     width: '130px',

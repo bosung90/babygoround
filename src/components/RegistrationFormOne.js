@@ -16,7 +16,7 @@ export default withRouter(
       email: getState().User.email,
       DOBBaby: getState().User.dateOfBirthBaby,
       socioGraphic: getState().User.socioGraph || {},
-      otherChecked: !!getState().User.socioGraph['other'],
+      otherChecked: !!(getState().User.socioGraph || {})['other'],
     }
     handleSubmit = e => {
       e.preventDefault()

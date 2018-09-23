@@ -4,37 +4,44 @@ import { colors } from '../common/index'
 import Select from 'cf-select'
 import { withRouter } from 'react-router-dom'
 import { firestore } from 'firebase/config'
+import { dispatch, getState } from 'store'
 
 export default withRouter(
   class RegistrationFormOne extends Component {
     state = {
-      otherChecked: false,
-      firstName: '',
-      lastName: '',
-      phoneNum: '',
-      DOB: '',
-      email: '',
+      firstName: getState().User.firstName,
+      lastName: getState().User.lastName,
+      phoneNum: getState().User.phoneNumber,
+      DOBUser: getState().User.dateOfBirthUser,
+      email: getState().User.email,
+      DOBBaby: getState().User.dateOfBirthBaby,
+      socioGraphic: getState().User.socioGraph || {},
+      otherChecked: !!getState().User.socioGraph['other'],
     }
     handleSubmit = e => {
       e.preventDefault()
       const {
-        DOB: dateOfBirthBaby,
+        DOBUser: dateOfBirthUser,
         firstName,
         lastName,
         phoneNum: phoneNumber,
         email,
+        socioGraphic: socioGraph,
+        DOBBaby: dateOfBirthBaby,
       } = this.state
 
       firestore
         .collection('Users')
-        .doc('pDvyJvfpwpUyo3NPc5nG')
+        .doc(dispatch.User.getUserId())
         .set(
           {
-            dateOfBirthBaby,
+            dateOfBirthUser,
             firstName,
             lastName,
             phoneNumber,
             email,
+            socioGraph,
+            dateOfBirthBaby,
           },
           { merge: true }
         )
@@ -132,9 +139,9 @@ export default withRouter(
                     type="date"
                     name="dobP"
                     placeholder="YYYY/MM/DD"
-                    value={this.state.DOB}
+                    value={this.state.DOBUser}
                     onChange={event => {
-                      this.setState({ DOB: event.target.value })
+                      this.setState({ DOBUser: event.target.value })
                     }}
                   />
                 </div>
@@ -166,13 +173,36 @@ export default withRouter(
             </h5>
             <div className={socio.radioWrapper}>
               <div className={socio.radioGroup}>
-                <input type="checkbox" id="new" name="socio" value="new" />
+                <input
+                  checked={!!this.state.socioGraphic['newComer']}
+                  onChange={({ target }) => {
+                    this.setState(({ socioGraphic }) => ({
+                      socioGraphic: {
+                        ...socioGraphic,
+                        newComer: target.checked,
+                      },
+                    }))
+                  }}
+                  type="checkbox"
+                  id="new"
+                  name="socio"
+                  value="new"
+                />
                 <label className={socio.radioInput} htmlFor="new">
                   Newcomer to Canada
                 </label>
               </div>
               <div className={socio.radioGroup}>
                 <input
+                  checked={!!this.state.socioGraphic['homeless']}
+                  onChange={({ target }) => {
+                    this.setState(({ socioGraphic }) => ({
+                      socioGraphic: {
+                        ...socioGraphic,
+                        homeless: target.checked,
+                      },
+                    }))
+                  }}
                   type="checkbox"
                   id="homeless"
                   name="socio"
@@ -184,6 +214,15 @@ export default withRouter(
               </div>
               <div className={socio.radioGroup}>
                 <input
+                  checked={!!this.state.socioGraphic['unemployed']}
+                  onChange={({ target }) => {
+                    this.setState(({ socioGraphic }) => ({
+                      socioGraphic: {
+                        ...socioGraphic,
+                        unemployed: target.checked,
+                      },
+                    }))
+                  }}
                   type="checkbox"
                   id="unemployed"
                   name="socio"
@@ -202,6 +241,15 @@ export default withRouter(
 
               <div className={socio.radioGroup}>
                 <input
+                  checked={this.state.otherChecked}
+                  onChange={({ target }) => {
+                    this.setState(({ socioGraphic }) => ({
+                      socioGraphic: {
+                        ...socioGraphic,
+                        other: target.checked,
+                      },
+                    }))
+                  }}
                   type="checkbox"
                   id="other"
                   name="socio"
@@ -213,6 +261,15 @@ export default withRouter(
                 </label>
                 <Select selector={this.state.otherChecked}>
                   <input
+                    value={this.state.socioGraphic['other']}
+                    onChange={({ target }) => {
+                      this.setState(({ socioGraphic }) => ({
+                        socioGraphic: {
+                          ...socioGraphic,
+                          other: target.value,
+                        },
+                      }))
+                    }}
                     className={socio.textInput}
                     type="text"
                     id="otherValue"
@@ -234,6 +291,10 @@ export default withRouter(
                 className={baby.input}
                 type="date"
                 name="bdob"
+                value={this.state.DOBBaby}
+                onChange={({ target }) =>
+                  this.setState({ DOBBaby: target.value })
+                }
                 placeholder="yyyy/mm/dd"
               />
             </div>

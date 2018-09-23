@@ -1,8 +1,7 @@
 import React from 'react'
 import { View, Button } from 'components'
 import { firestore } from 'firebase/config'
-import { constants } from 'common'
-import { getState } from 'store'
+import { getState, dispatch } from 'store'
 
 export default class InventoryItem extends React.Component {
   render() {
@@ -30,7 +29,7 @@ export default class InventoryItem extends React.Component {
     } = prevCheckedOutEquipments
     firestore
       .collection('Users')
-      .doc(constants.DEFAULT_USER_ID)
+      .doc(dispatch.User.getUserId())
       .update({
         checkedOutEquipments: newCheckedOutEqiupments,
       })

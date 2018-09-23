@@ -1,27 +1,27 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { colors } from 'common'
-import { View } from 'components'
+import { View, Label } from 'components'
 
-export default class Input extends React.Component {
+class Input extends React.Component {
   render() {
-    const { label, style, ...props } = this.props
+    const { label, forwardedRef, style, ...props } = this.props
     return (
       <View alignCenter style={style} row justifyBetween {...props}>
-        <View style={styles.label}>{label}</View>
+        <Label>{label}</Label>
         <View>
-          <input className={styles.input} />
+          <input ref={forwardedRef} className={styles.input} />
         </View>
       </View>
     )
   }
 }
 
+export default React.forwardRef((props, ref) => {
+  return <Input forwardedRef={ref} {...props} />
+})
+
 const styles = {
-  label: css({
-    fontSize: 18,
-    color: colors.LABEL,
-  }),
   input: css({
     height: 35,
     width: 350,

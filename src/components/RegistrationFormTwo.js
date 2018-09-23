@@ -100,7 +100,7 @@ export default withRouter(
       firestore
         .collection('Users')
         .doc(dispatch.User.getUserId())
-        .update({ requestedEquipmentItems: this.state })
+        .update({ requestedEquipments: this.state })
         .then(() => {
           this.props.history.push('/calendar')
         })

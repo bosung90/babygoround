@@ -5,45 +5,52 @@ import { firestore } from 'firebase/config';
 import Select from 'cf-select';
 
 class RegistrationFormTwo extends Component {
-    state = { equips: [], showTextBox: false }
-    handleOnClick() {
-        this.setState({
-            showTextBox:true,
-        })
-    }
-    componentDidMount() {
-        firestore
-            .collection('Equipments')
-            .get()
-            .then(docs => {
-                console.log(docs);
-                const tempEquip = [];
-                docs.forEach(doc => {
-                    const equipID = doc.id;
-                    const equipData = doc.data(); 
-                    equipData.id = equipID;
-                    tempEquip.push(equipData);
-                })
-                this.setState({ equips: tempEquip });
-            })
-    }
     render() {
         return(
             <div className={ styles.container }>
-                <input type="checkbox" onClick={ this.handleOnClick.bind(this) }/>
                 <div className={ styles.header }>REQUIRED ITEMS</div>
+                    {/* { equipList } */}
+                    <div className={equip.container}>
+                        <Select selector={state=>state.Equipments}>
+                            {Equipments =>  {
+                                if(!Equipments) return <div>Loading</div>;
+                                const equipment = Object.values(Equipments)
+                                return (
+                                    equipment.map((item, index) => {
+                                        return(
+                                            <Select selector={item.imageURL != "na"}>
+                                                <div className={equip.itemContainer}>
+                                                    <div className={ equip.wrapper }>
+                                                        <img src={item.imageURL} />
+                                                        <div className={ equip.itemLabel }>{item.type}</div>
+                                                    </div>
+                                                </div>
+                                                <input type="checkbox" className={ equip.checkbox } onChange={(e) => this.setState({ [item.type]: e.target.checked }) }/>
+                                            </Select>
+                                        )
+                                    })
+                                )
+                                console.log(Equipments);
+                                console.log(equipment);
 
-                <div className={ equip.container }>
-                    <Select selector={ state=>({
-                        Equipments: state.Equipments
-                    }) }>
-                        {({ Equipments }) => (
-                            <div className={equip.container }>
-                                { Equipments }
-                            </div> 
-                        )}
-                    </Select> )
-                </div>
+                            }}
+                        </Select>
+                    </div>
+                    <div>
+                        <div className={ styles.header }>Summary</div>
+                            <div style={{display:"flex", flexDirection:"row", }}>
+                            <Select selector={this.state !== null}>
+                                { this.state !== null ? Object.keys(this.state).map((item, index) => {
+                                    return(
+                                        <Select>
+                                            <div>{this.state[item] === true ? item : ""}</div>
+                                        </Select>
+                                    )
+                                }): "Please select your items"}
+                            </Select>
+                            </div>
+                    </div>
+
             </div>
         )
     }   
@@ -79,6 +86,8 @@ const equip =  {
     itemWrapper: css({
         display: "flex",
         flexDirection: "column",
+        width: "100px",
+        height: "100px"
     }),
     itemLabel: css({
         color: colors.LIGHTGRAY,

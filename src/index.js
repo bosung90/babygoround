@@ -14,14 +14,12 @@ import RegistrationFormTwo from './components/RegistrationFormTwo'
 import FirestoreSync from './FirestoreSync';
 import View from './components/View';
 
-<<<<<<< HEAD
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+import Success from './components/Success';
 
 library.add(faStroopwafel)
 
-=======
->>>>>>> a0397ca7403a13503f5e436aa78b2f5d1dcf91e9
 ReactDOM.render(
   <Provider store={store}>
     <View fill column>
@@ -37,6 +35,7 @@ ReactDOM.render(
             <Route exact path="/register" component={RegistrationFormOne} />
             <Route exact path="/warehouse" component={pages.Warehouse} />
             <Route exact path="/register2" component={RegistrationFormTwo} />
+            <Route exact path="/success" component={ Success } />
           </Switch>
         </div>
       </Router>

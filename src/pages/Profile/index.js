@@ -13,7 +13,7 @@ export default class Warehouse extends React.Component {
   render() {
     return (
       <View alignCenter column>
-        <View column h={1024 - 75} w={650} mt={50}>
+        <View column w={650} mt={50}>
           <View row>
             <View
               mt={30}

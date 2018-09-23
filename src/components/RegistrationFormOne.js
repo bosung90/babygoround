@@ -2,233 +2,234 @@ import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import { colors } from '../common/index'
 import Select from 'cf-select'
+import { withRouter } from 'react-router-dom'
 
-class RegistrationFormOne extends Component {
-  state = {
-    otherChecked: false,
-    firstName: '',
-    lastName: '',
-    phoneNum: '',
-    DOB: '',
-    email: '',
-  }
-  handleSubmit() {
-    //Submit on the button something will happen
+export default withRouter(
+  class RegistrationFormOne extends Component {
+    state = {
+      otherChecked: false,
+      firstName: '',
+      lastName: '',
+      phoneNum: '',
+      DOB: '',
+      email: '',
+    }
+    handleSubmit = e => {
+      e.preventDefault()
+      //Submit on the button something will happen
 
-    //Execution
+      //Execution
 
-    console.log('Submit has been pressed')
-  }
+      console.log('Submit has been pressed')
+    }
 
-  handleOnClick() {
-    console.log('Submit has been pressed')
-    const temp = !this.state.otherChecked
-    this.setState({
-      otherChecked: temp,
-    })
-  }
+    handleOnClick = () => {
+      console.log('Submit has been pressed')
+      const temp = !this.state.otherChecked
+      this.setState({
+        otherChecked: temp,
+      })
+    }
 
-  render() {
-    return (
-      <form
-        onSubmit={this.handleSubmit.bind(this)}
-        className={styles.container}
-      >
-        <div className={styles.userContainer}>
-          <div className={userProfile.container}>
-            {/*This is gonan be the user profile section*/}
-            <img alt="profile" src={require('../images/profile.svg')} />
-            <p>Profile picture</p>
-            <button
-              className={userProfile.button}
-              style={{ width: '50%' }}
-              type="Input"
-            >
-              Select Image
+    render() {
+      return (
+        <form onSubmit={this.handleSubmit} className={styles.container}>
+          <div className={styles.userContainer}>
+            <div className={userProfile.container}>
+              {/*This is gonan be the user profile section*/}
+              <img alt="profile" src={require('../images/profile.svg')} />
+              <p>Profile picture</p>
+              <button
+                className={userProfile.button}
+                style={{ width: '70%' }}
+                type="Input"
+              >
+                Select Image
+              </button>
+            </div>
+            <div className={user.container}>
+              <div className={user.wrapper}>
+                <h3 className={user.header}>USER INFORMATION</h3>
+                {/*User information Section*/}
+                <div className={user.formGroup}>
+                  <label className={user.label} htmlFor="name">
+                    First Name
+                  </label>
+                  <input
+                    className={user.input}
+                    type="text"
+                    name="fname"
+                    placeholder="John"
+                    value={this.state.firstName}
+                    onChange={event => {
+                      this.setState({ firstName: event.target.value })
+                    }}
+                  />
+                </div>
+
+                <div className={user.formGroup}>
+                  <label className={user.label} htmlFor="name">
+                    Last Name
+                  </label>
+                  <input
+                    className={user.input}
+                    type="text"
+                    name="lname"
+                    placeholder="Doe"
+                    value={this.state.lastName}
+                    onChange={event => {
+                      this.setState({ lastName: event.target.value })
+                    }}
+                  />
+                </div>
+
+                <div className={user.formGroup}>
+                  <label className={user.label} htmlFor="tel">
+                    Phone Number
+                  </label>
+                  <input
+                    className={user.input}
+                    type="number"
+                    name="tel"
+                    min="1000000000"
+                    max="9999999999"
+                    placeholder="6041234567"
+                    value={this.state.phoneNum}
+                    onChange={event => {
+                      this.setState({ phoneNum: event.target.value })
+                    }}
+                  />
+                </div>
+
+                <div className={user.formGroup}>
+                  <label className={user.label} htmlFor="date">
+                    Date of Birth
+                  </label>
+                  <input
+                    className={user.input}
+                    type="date"
+                    name="dobP"
+                    placeholder="YYYY/MM/DD"
+                    value={this.state.DOB}
+                    onChange={event => {
+                      this.setState({ DOB: event.target.value })
+                    }}
+                  />
+                </div>
+
+                <div className={user.formGroup}>
+                  <label className={user.label} htmlFor="email">
+                    Email Address
+                  </label>
+                  <input
+                    className={user.input}
+                    type="email"
+                    name="email"
+                    placeholder="John_Doe@gmail.com"
+                    value={this.state.email}
+                    onChange={event => {
+                      this.setState({ email: event.target.value })
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/*Sociograpic Section*/}
+          <div className={socio.radioContainer}>
+            <h3 className={socio.text}>Sociographic</h3>
+            <h5 className={socio.text}>
+              Check information that applies to your situation
+            </h5>
+            <div className={socio.radioWrapper}>
+              <div className={socio.radioGroup}>
+                <input type="checkbox" id="new" name="socio" value="new" />
+                <label className={socio.radioInput} htmlFor="new">
+                  Newcomer to Canada
+                </label>
+              </div>
+              <div className={socio.radioGroup}>
+                <input
+                  type="checkbox"
+                  id="homeless"
+                  name="socio"
+                  value="homeless"
+                />
+                <label className={socio.radioInput} htmlFor="homeless">
+                  Homeless
+                </label>
+              </div>
+              <div className={socio.radioGroup}>
+                <input
+                  type="checkbox"
+                  id="unemployed"
+                  name="socio"
+                  value="unemployed"
+                />
+                <label className={socio.radioInput} htmlFor="unemployed">
+                  Unemployed
+                </label>
+              </div>
+              <div className={socio.radioGroup}>
+                <input type="checkbox" id="SN" name="socio" value="SN" />
+                <label className={socio.radioInput} htmlFor="SN">
+                  Child special need
+                </label>
+              </div>
+
+              <div className={socio.radioGroup}>
+                <input
+                  type="checkbox"
+                  id="other"
+                  name="socio"
+                  value="other"
+                  onClick={this.handleOnClick.bind(this)}
+                />
+                <label className={socio.radioInput} htmlFor="other">
+                  Other
+                </label>
+                <Select selector={this.state.otherChecked}>
+                  <input
+                    className={socio.textInput}
+                    type="text"
+                    id="otherValue"
+                    name="other"
+                  />
+                </Select>
+              </div>
+            </div>
+          </div>
+
+          {/*Baby Information Section*/}
+          <div>
+            <h3 className={baby.header}>BABY INFORMATION</h3>
+            <div className={baby.formGroup}>
+              <label className={baby.label} htmlFor="bdob">
+                Baby's date of birth
+              </label>
+              <input
+                className={baby.input}
+                type="date"
+                name="bdob"
+                placeholder="yyyy/mm/dd"
+              />
+            </div>
+          </div>
+
+          <div className={endbutton.wrapper}>
+            {/* <button className={endbutton.buttonInverse} type="submit">
+            Previous
+          </button> */}
+            <button type="submit" className={endbutton.button}>
+              Next
             </button>
           </div>
-          <div className={user.container}>
-            <div className={user.wrapper}>
-              <h3 className={user.header}>USER INFORMATION</h3>
-              {/*User information Section*/}
-              <div className={user.formGroup}>
-                <label className={user.label} htmlFor="name">
-                  First Name
-                </label>
-                <input
-                  className={user.input}
-                  type="text"
-                  name="fname"
-                  placeholder="John"
-                  value={this.state.firstName}
-                  onChange={event => {
-                    this.setState({ firstName: event.target.value })
-                  }}
-                />
-              </div>
-
-              <div className={user.formGroup}>
-                <label className={user.label} htmlFor="name">
-                  Last Name
-                </label>
-                <input
-                  className={user.input}
-                  type="text"
-                  name="lname"
-                  placeholder="Doe"
-                  value={this.state.lastName}
-                  onChange={event => {
-                    this.setState({ lastName: event.target.value })
-                  }}
-                />
-              </div>
-
-              <div className={user.formGroup}>
-                <label className={user.label} htmlFor="tel">
-                  Phone Number
-                </label>
-                <input
-                  className={user.input}
-                  type="number"
-                  name="tel"
-                  min="1000000000"
-                  max="9999999999"
-                  placeholder="6041234567"
-                  value={this.state.phoneNum}
-                  onChange={event => {
-                    this.setState({ phoneNum: event.target.value })
-                  }}
-                />
-              </div>
-
-              <div className={user.formGroup}>
-                <label className={user.label} htmlFor="date">
-                  Date of Birth
-                </label>
-                <input
-                  className={user.input}
-                  type="date"
-                  name="dobP"
-                  placeholder="YYYY/MM/DD"
-                  value={this.state.DOB}
-                  onChange={event => {
-                    this.setState({ DOB: event.target.value })
-                  }}
-                />
-              </div>
-
-              <div className={user.formGroup}>
-                <label className={user.label} htmlFor="email">
-                  Email Address
-                </label>
-                <input
-                  className={user.input}
-                  type="email"
-                  name="email"
-                  placeholder="John_Doe@gmail.com"
-                  value={this.state.email}
-                  onChange={event => {
-                    this.setState({ email: event.target.value })
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/*Sociograpic Section*/}
-        <div className={socio.radioContainer}>
-          <h3 className={socio.text}>Sociographic</h3>
-          <h5 className={socio.text}>
-            Check information that applies to your situation
-          </h5>
-          <div className={socio.radioWrapper}>
-            <div className={socio.radioGroup}>
-              <input type="checkbox" id="new" name="socio" value="new" />
-              <label className={socio.radioInput} htmlFor="new">
-                Newcomer to Canada
-              </label>
-            </div>
-            <div className={socio.radioGroup}>
-              <input
-                type="checkbox"
-                id="homeless"
-                name="socio"
-                value="homeless"
-              />
-              <label className={socio.radioInput} htmlFor="homeless">
-                Homeless
-              </label>
-            </div>
-            <div className={socio.radioGroup}>
-              <input
-                type="checkbox"
-                id="unemployed"
-                name="socio"
-                value="unemployed"
-              />
-              <label className={socio.radioInput} htmlFor="unemployed">
-                Unemployed
-              </label>
-            </div>
-            <div className={socio.radioGroup}>
-              <input type="checkbox" id="SN" name="socio" value="SN" />
-              <label className={socio.radioInput} htmlFor="SN">
-                Child special need
-              </label>
-            </div>
-
-            <div className={socio.radioGroup}>
-              <input
-                type="checkbox"
-                id="other"
-                name="socio"
-                value="other"
-                onClick={this.handleOnClick.bind(this)}
-              />
-              <label className={socio.radioInput} htmlFor="other">
-                Other
-              </label>
-              <Select selector={this.state.otherChecked}>
-                <input
-                  className={socio.textInput}
-                  type="text"
-                  id="otherValue"
-                  name="other"
-                />
-              </Select>
-            </div>
-          </div>
-        </div>
-
-        {/*Baby Information Section*/}
-        <div>
-          <h3 className={baby.header}>BABY INFORMATION</h3>
-          <div className={baby.formGroup}>
-            <label className={baby.label} htmlFor="bdob">
-              Baby's date of birth
-            </label>
-            <input
-              className={baby.input}
-              type="date"
-              name="bdob"
-              placeholder="yyyy/mm/dd"
-            />
-          </div>
-        </div>
-
-        <div className={endbutton.wrapper}>
-          <button className={endbutton.buttonInverse} type="submit">
-            Previous
-          </button>
-          <button className={endbutton.button} type="submit">
-            Next
-          </button>
-        </div>
-      </form>
-    )
+        </form>
+      )
+    }
   }
-}
+)
 
 const styles = {
   container: css({
@@ -403,5 +404,3 @@ const endbutton = {
     borderColor: colors.PRIMARY,
   }),
 }
-
-export default RegistrationFormOne

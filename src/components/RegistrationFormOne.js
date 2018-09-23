@@ -37,7 +37,7 @@ class RegistrationFormOne extends Component {
         <div className={styles.userContainer}>
           <div className={userProfile.container}>
             {/*This is gonan be the user profile section*/}
-            <img src={require('../images/profile.svg')} />
+            <img alt="profile" src={require('../images/profile.svg')} />
             <p>Profile picture</p>
             <button
               className={userProfile.button}

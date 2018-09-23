@@ -1,14 +1,38 @@
 import React from 'react'
 import { View, Button } from 'components'
-import { dispatch } from 'store'
+import { firestore } from 'firebase/config'
+import { constants } from 'common'
+import { getState } from 'store'
 
 export default class InventoryItem extends React.Component {
   render() {
+    const { name } = this.props
     return (
-      <View pl={20} row mb={10} h={40} alignCenter justifyBetween>
-        <View style={{ fontSize: 20 }}>{this.props.name}</View>
+      <View
+        onClick={this.handleOnClick}
+        pl={20}
+        row
+        mb={10}
+        h={40}
+        alignCenter
+        justifyBetween
+      >
+        <View style={{ fontSize: 20 }}>{name}</View>
         <Button style={{ height: 40 }}>RETURN</Button>
       </View>
     )
+  }
+  handleOnClick = () => {
+    const prevCheckedOutEquipments = getState().User.checkedOutEquipments
+    const {
+      [this.props.id]: _,
+      ...newCheckedOutEqiupments
+    } = prevCheckedOutEquipments
+    firestore
+      .collection('Users')
+      .doc(constants.DEFAULT_USER_ID)
+      .update({
+        checkedOutEquipments: newCheckedOutEqiupments,
+      })
   }
 }

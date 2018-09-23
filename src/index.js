@@ -13,10 +13,6 @@ import RegistrationFormOne from './components/RegistrationFormOne'
 import RegistrationFormTwo from './components/RegistrationFormTwo'
 import FirestoreSync from './FirestoreSync'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
-
-library.add(faStroopwafel)
 ReactDOM.render(
   <Provider store={store}>
     <View fill column>

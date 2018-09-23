@@ -10,18 +10,12 @@ import { Provider } from 'react-redux'
 import { store } from 'store'
 import * as pages from 'pages'
 import RegistrationFormOne from './components/RegistrationFormOne'
+import RegistrationFormTwo from './components/RegistrationFormTwo'
 
-<<<<<<< Updated upstream
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faStroopwafel)
-=======
-//View Components
-import RegistrationFormOne from './components/RegistrationFormOne';
-import RegistrationFormTwo from './components/RegistrationFormTwo';
->>>>>>> Stashed changes
-
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
@@ -32,14 +26,11 @@ ReactDOM.render(
           <Route exact path="/something" component={App} />
           <Route exact path="/auth" component={pages.Auth} />
           <Route exact path="/form" component={pages.Form} />
-<<<<<<< Updated upstream
           <Route exact path="/calendar" component={pages.Calendar} />
           <Route exact path="/register" component={RegistrationFormOne} />
           <Route exact path="/warehouse" component={pages.Warehouse} />
           {/* <Route path="/something" component={add your component here}/> */}
-=======
           <Route exact path="/test" component={RegistrationFormTwo} />
->>>>>>> Stashed changes
         </Switch>
       </div>
     </Router>

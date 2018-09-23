@@ -5,6 +5,7 @@ export default class View extends React.Component {
   render() {
     const {
       children,
+      onClick,
       style: customStyle,
       className: customClassName,
       ...props
@@ -119,7 +120,11 @@ export default class View extends React.Component {
     // 3. Apply customStyle passed down as this.props.style
     style.push(customStyle)
     style.push(customClassName)
-    return <div className={css(style)}>{children}</div>
+    return (
+      <div className={css(style)} onClick={onClick}>
+        {children}
+      </div>
+    )
   }
 }
 

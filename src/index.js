@@ -12,6 +12,7 @@ import * as pages from 'pages'
 import RegistrationFormOne from './components/RegistrationFormOne'
 import RegistrationFormTwo from './components/RegistrationFormTwo'
 import FirestoreSync from './FirestoreSync'
+import Success from './components/Success'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -49,6 +50,7 @@ ReactDOM.render(
                     path="/register2"
                     component={RegistrationFormTwo}
                   />
+                  <Route exact path="/success" component={Success} />
                 </Switch>
               </div>
             </Router>

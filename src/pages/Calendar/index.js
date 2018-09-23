@@ -81,7 +81,7 @@ export default class Calendar extends React.Component {
             </View>
             <View row style={{ flexWrap: 'wrap' }}>
               {days.map((day, index) => {
-                return <Item key={index} dateNumber={parseInt(day)} />
+                return <Item key={index} dateNumber={parseInt(day, 10)} />
               })}
             </View>
 

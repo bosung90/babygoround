@@ -15,6 +15,7 @@ class RegistrationFormTwo extends Component {
                             {Equipments =>  {
                                 if(!Equipments) return <div>Loading</div>;
                                 const equipment = Object.values(Equipments)
+                                console.log(equipment);
                                 return (
                                     equipment.map((item, index) => {
                                         return(
@@ -43,8 +44,7 @@ class RegistrationFormTwo extends Component {
                                     { this.state !== null ? Object.keys(this.state).map((item, index) => {
                                         return(
                                             <Select>
-                                                <div className={ styles.text }>{this.state[item] === true ? item : ""}</div>
-                                                <div className={ styles.line }>|</div>
+                                                <div className={ summary.text }>{this.state[item] === true ? item : ""}</div>
                                             </Select>
                                                 
                                         )
@@ -131,6 +131,7 @@ const equip =  {
 
 const endbutton = {
     container: css({
+        marginTop: "0.5em",
         display: "flex",
         flexDirection: "row",
         justifyContent: 'center',
@@ -162,10 +163,18 @@ const endbutton = {
   }
 
   const summary = {
-      container:css({
+        container:css({
+            margin: '2em 10% 0 10%',
             display:"flex", 
             flexDirection:"row",
             flexWrap: "wrap",
+            color: colors.LIGHTGRAY
+      }),
+        text: css({
+            marginBottom: '1em',
+            paddingRight: '20px',
+            paddingLeft: '20px',
+            borderRight: `1px solid ${colors.PRIMARY}`,
       })
   }
 

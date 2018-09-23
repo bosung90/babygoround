@@ -20,7 +20,6 @@ ReactDOM.render(
           <Route exact path="/something" component={App} />
           <Route exact path="/auth" component={pages.Auth} />
           <Route exact path="/form" component={pages.Form} />
-          <Route exact path="/calendar" component={pages.Calendar} />
           {/* <Route path="/something" component={add your component here}/> */}
         </Switch>
       </div>

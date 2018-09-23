@@ -2,39 +2,13 @@ import React from 'react'
 import { css } from 'react-emotion'
 import { colors } from 'common'
 import { View, Button, Input, Label } from 'components'
-import { dispatch } from 'store'
 import InventoryItem from './InventoryItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import UserInfoRow from './UserInfoRow'
-
-import { firestore } from 'firebase/config'
+import Select from 'cf-select'
 
 export default class Warehouse extends React.Component {
-  state = { checkedOutEquipments: [], requestedEquipments: [] }
-  // static getDerivedStateFromProps(props, state) {
-
-  // }
-  componentDidMount() {
-    firestore
-      .collection('Users')
-      .doc('pDvyJvfpwpUyo3NPc5nG')
-      .get()
-      .then(doc => {
-        const userData = doc.data()
-        const {
-          checkedOutEquipments: checkedOutEquipmentIds,
-          requestedEquipments: requestedEquipmentIds,
-        } = userData
-
-        const checkedOutEquipments = []
-        const requestedEquipments = []
-
-        firestore.collection('Equipments').doc()
-
-        console.log(doc.data())
-      })
-  }
   render() {
     return (
       <View alignCenter column>
@@ -55,25 +29,59 @@ export default class Warehouse extends React.Component {
             </View>
             <View column fill>
               <Label label="USER INFORMATION" />
-              <UserInfoRow label="First Name" value="Jon" />
-              <UserInfoRow label="Last Name" value="Snow" />
-              <UserInfoRow label="Phone Number" value="(604)555-5555" />
-              <UserInfoRow label="Email Address" value="jon.snow@gmail.com" />
-              <UserInfoRow label="Date of Birth" value="1978/06/24" />
+              <UserInfoRow
+                label="First Name"
+                value={<Select selector={state => state.User.firstName} />}
+              />
+              <UserInfoRow
+                label="Last Name"
+                value={<Select selector={state => state.User.lastName} />}
+              />
+              <UserInfoRow
+                label="Phone Number"
+                value={<Select selector={state => state.User.phoneNumber} />}
+              />
+              <UserInfoRow
+                label="Email Address"
+                value={<Select selector={state => state.User.email} />}
+              />
+              <UserInfoRow
+                label="Date of Birth"
+                value={
+                  <Select selector={state => state.User.dateOfBirthUser} />
+                }
+              />
             </View>
           </View>
           <View column mv={30} pl={10}>
             <Label label="BABY INFORMATION" />
-            <UserInfoRow label="Date of Birth" value="2018/11/24" />
+            <UserInfoRow
+              label="Date of Birth"
+              value={<Select selector={state => state.User.dateOfBirthBaby} />}
+            />
           </View>
 
           <View column pl={10}>
             <Label label="REQUESTED ITEMS" />
-
-            <InventoryItem name="Stroller" />
-            <InventoryItem name="Puzzle" />
-            <InventoryItem name="Diaper" />
-            <InventoryItem name="Bottle" />
+            <Select
+              selector={state => {
+                if (!state.User.requestedEquipments) return null
+                const requestedEquipments = Object.keys(
+                  state.User.requestedEquipments
+                )
+                return requestedEquipments.map(requestedEquipId => ({
+                  ...state.Equipments[requestedEquipId],
+                  id: requestedEquipId,
+                }))
+              }}
+            >
+              {requestedEquipmentsWithData => {
+                if (!requestedEquipmentsWithData) return <View>Loading...</View>
+                return requestedEquipmentsWithData.map(equipment => (
+                  <InventoryItem key={equipment.id} name={equipment.type} />
+                ))
+              }}
+            </Select>
           </View>
 
           <View column pl={10}>

@@ -25,7 +25,7 @@ export default class FirestoreSync extends React.Component {
         dispatch.User.setUser(userData)
       })
   }
-  componentDidUnmount() {
+  componentWillUnmount() {
     this.unsubsEquipments && this.unsubsEquipments()
   }
   render() {

@@ -1,4 +1,5 @@
 import user from './user'
+import Equipments from './Equipments'
 
 export default {
   count: {
@@ -19,4 +20,5 @@ export default {
     }),
   },
   user,
+  Equipments,
 }

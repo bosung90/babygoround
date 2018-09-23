@@ -8,9 +8,10 @@ export default class Label extends React.Component {
       <View
         column
         alignStretch
-        style={{ border: '0px solid ' + colors.PRIMARY, borderBottomWidth: 1 }}
+        mv={10}
+        style={{ border: '0px solid ' + colors.PRIMARY, borderBottomWidth: 2 }}
       >
-        <View style={{ color: colors.PRIMARY }}>SET AN APPOINTMENT</View>
+        <View style={{ color: colors.PRIMARY }}>{this.props.label}</View>
       </View>
     )
   }

@@ -7,8 +7,8 @@ import { dispatch } from 'store'
 export default class InventoryItem extends React.Component {
   render() {
     return (
-      <View row mt={10} h={50} alignCenter justifyBetween>
-        <View>ITEM NAME</View>
+      <View pl={20} row mt={10} h={50} alignCenter justifyBetween>
+        <View>{this.props.name}</View>
         <Button>RETURN</Button>
       </View>
     )

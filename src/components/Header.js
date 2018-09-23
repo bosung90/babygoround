@@ -12,8 +12,12 @@ export default class Header extends React.Component {
           <img alt="header-logo" src={headerLogo} />
         </Button>
         <View row w={220} mr={20} justifyBetween>
-          <Button secondary>Profile</Button>
-          <Button secondary>Logout</Button>
+          <Button secondary className={{ width: 100, height: 40 }}>
+            Profile
+          </Button>
+          <Button secondary className={{ width: 100, height: 40 }}>
+            Logout
+          </Button>
         </View>
       </View>
     )

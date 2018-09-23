@@ -8,11 +8,11 @@ export default class Button extends React.Component {
     const { style, className, secondary, ...props } = this.props
     return (
       <View
-        style={style}
         className={css(
           styles.button,
           secondary === true && styles.secondary,
-          className
+          className,
+          style
         )}
         center
         {...props}

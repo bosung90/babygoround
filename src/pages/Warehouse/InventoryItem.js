@@ -1,15 +1,13 @@
 import React from 'react'
-import { css } from 'react-emotion'
-import { colors } from 'common'
-import { View, Button, Input } from 'components'
+import { View, Button } from 'components'
 import { dispatch } from 'store'
 
 export default class InventoryItem extends React.Component {
   render() {
     return (
-      <View pl={20} row mt={10} h={50} alignCenter justifyBetween>
-        <View>{this.props.name}</View>
-        <Button>RETURN</Button>
+      <View pl={20} row mb={10} h={40} alignCenter justifyBetween>
+        <View style={{ fontSize: 20 }}>{this.props.name}</View>
+        <Button style={{ height: 40 }}>RETURN</Button>
       </View>
     )
   }

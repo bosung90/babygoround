@@ -12,9 +12,7 @@ class RegistrationFormTwo extends Component {
     return (
       <div className={styles.container}>
         <Progress pagenum={2} />
-        <div className={styles.header} style={{ marginTop: 20 }}>
-          REQUIRED ITEMS
-        </div>
+        <div className={styles.header}>REQUIRED ITEMS</div>
         <div className={equip.container}>
           <Select selector={state => state.Equipments}>
             {Equipments => {

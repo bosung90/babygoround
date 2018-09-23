@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import UserInfoRow from './UserInfoRow'
 import Select from 'cf-select'
-import EquipmentItem from './EquipmentItem'
+import Equipment from '../../components/Equipment'
 
 export default class Warehouse extends React.Component {
   render() {
@@ -71,7 +71,6 @@ export default class Warehouse extends React.Component {
                   const requestedEquipments = Object.keys(
                     state.User.requestedEquipments
                   )
-
                   return requestedEquipments.map(requestedEquipId => ({
                     ...state.Equipments[requestedEquipId],
                     id: requestedEquipId,
@@ -79,12 +78,13 @@ export default class Warehouse extends React.Component {
                 }}
               >
                 {requestedEquipmentsWithData => {
-                  if (!requestedEquipmentsWithData) return null
+                  if (!requestedEquipmentsWithData)
+                    return <View>Loading...</View>
                   return requestedEquipmentsWithData.map((equipment, index) => (
-                    <EquipmentItem
+                    <Equipment
                       mr={index % 4 === 3 ? 0 : 70}
                       key={equipment.id}
-                      name={equipment.type}
+                      equipment={equipment}
                     />
                   ))
                 }}
@@ -94,30 +94,36 @@ export default class Warehouse extends React.Component {
 
           <View column pl={10}>
             <Heading text="CHECKED OUT ITEMS" />
-            <Select
-              selector={state => {
-                if (!state.User.checkedOutEquipments) return null
-                const checkedOutEquipments = Object.keys(
-                  state.User.checkedOutEquipments
-                )
-                return checkedOutEquipments.map(checkedOutEquipId => ({
-                  ...state.Equipments[checkedOutEquipId],
-                  id: checkedOutEquipId,
-                }))
-              }}
-            >
-              {checkedOutEquipmentsWithData => {
-                if (!checkedOutEquipmentsWithData) return null
-                return checkedOutEquipmentsWithData.map(equipment => (
-                  <InventoryItem
-                    key={equipment.id}
-                    id={equipment.id}
-                    name={equipment.type}
-                  />
-                ))
-              }}
-            </Select>
+            <View row wrap mv={16}>
+              <Select
+                selector={state => {
+                  if (!state.User.checkedOutEquipments) return null
+                  const checkedOutEquipments = Object.keys(
+                    state.User.checkedOutEquipments
+                  )
+                  return checkedOutEquipments.map(checkedOutEquipId => ({
+                    ...state.Equipments[checkedOutEquipId],
+                    id: checkedOutEquipId,
+                  }))
+                }}
+              >
+                {checkedOutEquipmentsWithData => {
+                  if (!checkedOutEquipmentsWithData)
+                    return <View>Loading...</View>
+                  return checkedOutEquipmentsWithData.map(
+                    (equipment, index) => (
+                      <Equipment
+                        mr={index % 4 === 3 ? 0 : 70}
+                        key={equipment.id}
+                        equipment={equipment}
+                      />
+                    )
+                  )
+                }}
+              </Select>
+            </View>
           </View>
+
           <View column pl={10}>
             <Heading text="APPOINTMENTS" />
           </View>

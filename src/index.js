@@ -13,7 +13,7 @@ import RegistrationFormOne from './components/RegistrationFormOne'
 import RegistrationFormTwo from './components/RegistrationFormTwo'
 import FirestoreSync from './FirestoreSync'
 import Success from './components/Success'
-import Demand from './Demand/Demand';
+import Demand from './Demand/Demand'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -52,6 +52,7 @@ ReactDOM.render(
                     component={RegistrationFormTwo}
                   />
                   <Route exact path="/success" component={Success} />
+                  <Route exact path="/profile" component={pages.Profile} />
                   <Route exact path="/demand" component={Demand} />
                 </Switch>
               </div>

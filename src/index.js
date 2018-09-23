@@ -5,18 +5,20 @@ import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import history from './history'
-import { Header, View } from 'components'
+import { Header } from 'components'
 import { Provider } from 'react-redux'
 import { store } from 'store'
 import * as pages from 'pages'
 import RegistrationFormOne from './components/RegistrationFormOne'
 import RegistrationFormTwo from './components/RegistrationFormTwo'
-import FirestoreSync from './FirestoreSync'
+import FirestoreSync from './FirestoreSync';
+import View from './components/View';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
 
 library.add(faStroopwafel)
+
 ReactDOM.render(
   <Provider store={store}>
     <View fill column>

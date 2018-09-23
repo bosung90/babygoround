@@ -9,6 +9,7 @@ import { Header } from 'components'
 import { Provider } from 'react-redux'
 import { store } from 'store'
 import * as pages from 'pages'
+import RegistrationFormOne from './components/RegistrationFormOne'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -21,6 +22,8 @@ ReactDOM.render(
           <Route exact path="/auth" component={pages.Auth} />
           <Route exact path="/form" component={pages.Form} />
           <Route exact path="/calendar" component={pages.Calendar} />
+          <Route exact path="/register" component={RegistrationFormOne} />
+
           {/* <Route path="/something" component={add your component here}/> */}
         </Switch>
       </div>

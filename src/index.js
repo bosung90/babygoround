@@ -11,6 +11,11 @@ import { store } from 'store'
 import * as pages from 'pages'
 import RegistrationFormOne from './components/RegistrationFormOne'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faStroopwafel)
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>

@@ -57,10 +57,10 @@ export default class View extends React.Component {
           style.push(css({ margin: props[key] }))
           break
         case 'ph':
-          style.push(css({ paddingHorizontal: props[key] }))
+          style.push(css({ paddingLeft: props[key], paddingRight: props[key] }))
           break
         case 'pv':
-          style.push(css({ paddingVertical: props[key] }))
+          style.push(css({ paddingTop: props[key], paddingBottom: props[key] }))
           break
         case 'pt':
           style.push(css({ paddingTop: props[key] }))
@@ -143,14 +143,17 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
   }),
+  selfStart: css({
+    alignSelf: 'start',
+  }),
   alignStart: css({
-    alignItems: 'start',
+    alignItems: 'flex-start',
   }),
   alignCenter: css({
     alignItems: 'center',
   }),
   alignEnd: css({
-    alignItems: 'end',
+    alignItems: 'flex-end',
   }),
   alignStretch: css({
     alignItems: 'stretch',

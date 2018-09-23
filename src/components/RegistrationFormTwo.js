@@ -1,45 +1,57 @@
 import React, { Component } from 'react'
 import { css } from 'react-emotion'
-import { View } from 'components'
 import { colors } from '../common/index'
 import { firestore } from 'firebase/config'
 import Select from 'cf-select'
+import { Progress, View } from 'components'
+import { dispatch } from 'store'
 
 class RegistrationFormTwo extends Component {
   state = {}
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.header}>REQUIRED ITEMS</div>
+        <Progress pagenum={2} />
+        <div className={styles.header} style={{ marginTop: 20 }}>
+          REQUIRED ITEMS
+        </div>
         <div className={equip.container}>
           <Select selector={state => state.Equipments}>
             {Equipments => {
               if (!Equipments) return <div>Loading</div>
-              const equipment = Object.values(Equipments)
-              return equipment.map((item, index) => {
-                return (
-                  <Select key={index} selector={item.imageURL !== 'na'}>
-                    <View row alignCenter>
-                      <label htmlFor={item.id}>
-                        <div className={equip.itemContainer}>
-                          <div className={equip.wrapper}>
-                            <img alt="itemImage" src={item.imageURL} />
-                            <div className={equip.itemLabel}>{item.type}</div>
+              const equipmentKeys = Object.keys(Equipments)
+              return equipmentKeys.map((itemId, index) => (
+                <Select
+                  key={index}
+                  selector={
+                    Equipments[itemId].imageURL !== 'na' && itemId !== 'loading'
+                  }
+                >
+                  <View row alignCenter>
+                    <label htmlFor={itemId}>
+                      <div className={equip.itemContainer}>
+                        <div className={equip.wrapper}>
+                          <img
+                            alt="equipment"
+                            src={Equipments[itemId].imageURL}
+                          />
+                          <div className={equip.itemLabel}>
+                            {Equipments[itemId].type}
                           </div>
                         </div>
-                      </label>
-                      <input
-                        type="checkbox"
-                        className={equip.checkbox}
-                        onChange={e =>
-                          this.setState({ [item.id]: e.target.checked })
-                        }
-                        id={item.id}
-                      />
-                    </View>
-                  </Select>
-                )
-              })
+                      </div>
+                    </label>
+                    <input
+                      type="checkbox"
+                      className={equip.checkbox}
+                      onChange={e =>
+                        this.setState({ [itemId]: e.target.checked })
+                      }
+                      id={itemId}
+                    />
+                  </View>
+                </Select>
+              ))
             }}
           </Select>
         </div>
@@ -72,7 +84,11 @@ class RegistrationFormTwo extends Component {
             </button>
           </div>
           <div className={endbutton.wrapper}>
-            <button onClick={this.handleNext} className={endbutton.button}>
+            <button
+              onClick={this.handleNext}
+              type="submit"
+              className={endbutton.button}
+            >
               Next
             </button>
           </div>
@@ -81,8 +97,10 @@ class RegistrationFormTwo extends Component {
     )
   }
   handleNext = () => {
-    const selectedRequestedItems = Object.keys(this.state)
-    console.log(selectedRequestedItems)
+    firestore
+      .collection('Users')
+      .doc(dispatch.User.getUserId())
+      .update({ requestedUserItems: this.state })
   }
 }
 

@@ -7,13 +7,11 @@ import * as images from 'images'
 export default class Header extends React.Component {
   render() {
     return (
-      <View row h={50} className={styles.header}>
-        <View fill>
-          <Button className={styles.logoButton}>
-            <img alt="logo" src={images.logo} />
-          </Button>
-        </View>
-        <View row alignCenter w={220} mr={20} justifyBetween>
+      <View row alignCenter h={75} className={styles.header} justifyBetween>
+        <Button className={styles.logoButton}>
+          <img alt="logo" src={images.logo} />
+        </Button>
+        <View row w={220} mr={20} justifyBetween>
           <Button secondary>Profile</Button>
           <Button secondary>Logout</Button>
         </View>
@@ -28,7 +26,6 @@ const styles = {
     borderColor: colors.PRIMARY,
   }),
   logoButton: css({
-    alignSelf: 'flex-start',
     backgroundColor: 'transparent',
     width: 200,
   }),

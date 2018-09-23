@@ -30,14 +30,15 @@ const styles = {
     width: 150,
     height: 50,
     cursor: 'pointer',
+    borderRadius: 5,
     backgroundColor: colors.PRIMARY,
   }),
   secondary: css({
     backgroundColor: 'transparent',
     borderRadius: 5,
-    border: '1px solid ' + colors.PRIMARY,
+    border: '2px solid ' + colors.PRIMARY,
     color: colors.PRIMARY,
-    height: 40,
-    width: 100,
+    width: 146,
+    height: 46,
   }),
 }

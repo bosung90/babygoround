@@ -2,14 +2,14 @@ import React from 'react'
 import { css } from 'react-emotion'
 import { View, Button } from 'components'
 import { colors } from 'common'
-import * as images from 'images'
+import { headerLogo } from 'images'
 
 export default class Header extends React.Component {
   render() {
     return (
       <View row alignCenter h={75} className={styles.header} justifyBetween>
         <Button className={styles.logoButton}>
-          <img alt="logo" src={images.logo} />
+          <img alt="header-logo" src={headerLogo} />
         </Button>
         <View row w={220} mr={20} justifyBetween>
           <Button secondary>Profile</Button>

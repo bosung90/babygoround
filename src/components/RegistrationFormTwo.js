@@ -204,13 +204,13 @@ const summary = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    margin: '5em, 10%, 0, 10%',
+    margin: '5em 10% 0 10%',
   }),
   text: css({
     color: colors.LIGHTGRAY,
     borderRight: '1px solid',
     borderColor: colors.PRIMARY,
     paddingRight: '2em',
-    PaddingLeft: '2em',
+    paddingLeft: '2em',
   }),
 }

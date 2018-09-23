@@ -11,10 +11,16 @@ export default class EquipmentItem extends React.Component {
       <View
         onClick={() => {
           const checkedOutEquipments = getState().User.checkedOutEquipments
+          const requestedEquipments = getState().User.requestedEquipments
+          const {
+            [equipment.id]: _,
+            ...newRequestedEquipments
+          } = requestedEquipments
           firestore
             .collection('Users')
             .doc(dispatch.User.getUserId())
             .update({
+              requestedEquipments: newRequestedEquipments,
               checkedOutEquipments: {
                 ...checkedOutEquipments,
                 [equipment.id]: true,

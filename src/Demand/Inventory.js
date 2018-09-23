@@ -14,17 +14,16 @@ class Inventory extends Component {
                             return (
                                 equipment.map((item, index) => {
                                     return(
-                                        <Select selector={item.imageURL != "na"}>
-                                            <div>
-                                                <div>
+                                        <div className={ equip.wrapper }>
+                                            <Select selector={item.imageURL !== "na"}>
+                                                <div className={equip.imageContainer}>
                                                     <img src={item.imageURL} />
-                                                    <div>{item.type}</div>
                                                 </div>
-                                            </div>
-                                            <div className={count.container}>
-
-                                            </div>
-                                        </Select>
+                                                <div className={count.container}>
+                                                    { item.count }
+                                                </div>
+                                            </Select>
+                                        </div>
                                     )
                                 })
                             )
@@ -49,7 +48,13 @@ const styles = {
 
 const count = {
     container:css({
-
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "50px",
+        height: "50px",
+        border: "1px solid lightgray",
+        color: "lightgray"
     })
 }
 
@@ -57,7 +62,20 @@ const equip = {
     container:css({
         display: "flex",
         flexDirection: "row",
-        
+        flexWrap: "wrap"
+    }),
+    wrapper:css({
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+    }),
+    imageContainer: css({
+        display: "flex",
+        flexDirection: "row",
+        minWidth: "100px",
+        height: "100px",
+        justifyContent: "center"
     })
 }
 

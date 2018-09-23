@@ -8,7 +8,7 @@ class Input extends React.Component {
     const { label, forwardedRef, style, ...props } = this.props
     return (
       <View alignCenter style={style} row justifyBetween {...props}>
-        <Label>{label}</Label>
+        <Label label={label} />
         <View>
           <input ref={forwardedRef} className={styles.input} />
         </View>

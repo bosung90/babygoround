@@ -5,12 +5,12 @@ import { View, Label } from 'components'
 
 class Input extends React.Component {
   render() {
-    const { label, forwardedRef, style, ...props } = this.props
+    const { label, forwardedRef, style, type, ...props } = this.props
     return (
       <View alignCenter style={style} row justifyBetween {...props}>
         <Label label={label} />
         <View>
-          <input ref={forwardedRef} className={styles.input} />
+          <input ref={forwardedRef} className={styles.input} type={type} />
         </View>
       </View>
     )

@@ -84,6 +84,7 @@ export default class Warehouse extends React.Component {
                     <EquipmentItem
                       mr={index % 4 === 3 ? 0 : 70}
                       key={equipment.id}
+                      equipment={equipment}
                       name={equipment.type}
                     />
                   ))

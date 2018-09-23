@@ -1,14 +1,14 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { colors } from 'common'
-import { View } from 'components'
+import { View, Label } from 'components'
 
 class Input extends React.Component {
   render() {
     const { label, forwardedRef, style, ...props } = this.props
     return (
       <View alignCenter style={style} row justifyBetween {...props}>
-        <View style={styles.label}>{label}</View>
+        <Label>{label}</Label>
         <View>
           <input ref={forwardedRef} className={styles.input} />
         </View>
@@ -22,10 +22,6 @@ export default React.forwardRef((props, ref) => {
 })
 
 const styles = {
-  label: css({
-    fontSize: 18,
-    color: colors.LABEL,
-  }),
   input: css({
     height: 35,
     width: 350,

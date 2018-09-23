@@ -38,19 +38,33 @@ class RegistrationFormTwo extends Component {
                     </div>
                     <div>
                         <div className={ styles.header }>Summary</div>
-                            <div style={{display:"flex", flexDirection:"row", }}>
-                            <Select selector={this.state !== null}>
-                                { this.state !== null ? Object.keys(this.state).map((item, index) => {
-                                    return(
-                                        <Select>
-                                            <div>{this.state[item] === true ? item : ""}</div>
-                                        </Select>
-                                    )
-                                }): "Please select your items"}
-                            </Select>
+                            <div className={ summary.container}>
+                                <Select selector={this.state !== null}>
+                                    { this.state !== null ? Object.keys(this.state).map((item, index) => {
+                                        return(
+                                            <Select>
+                                                <div className={ styles.text }>{this.state[item] === true ? item : ""}</div>
+                                                <div className={ styles.line }>|</div>
+                                            </Select>
+                                                
+                                        )
+                                    }): "Please select your items"}
+                                </Select>
                             </div>
                     </div>
 
+                    <div className={endbutton.container} >
+                        <div className={endbutton.wrapper}>
+                            <button type="submit" className={endbutton.buttonInverse}>
+                            Previous
+                            </button>
+                        </div>
+                        <div className={endbutton.wrapper}>
+                            <button type="submit" className={endbutton.button}>
+                            Next
+                            </button>
+                        </div>
+                    </div>
             </div>
         )
     }   
@@ -66,7 +80,15 @@ const styles = {
         fontSize: "24px",
         color: colors.PRIMARY,
         borderBottom: `1px solid ${colors.PRIMARY}`
-    })
+    }),
+    text: css({
+        fontSize: '16px',
+        borderLeft: '2px',
+        borderRadius: '5px',
+        paddingRight: '2em',
+        paddingLeft: '2em',
+        color: colors.LIGHTGRAY,
+    }),
 }
 
 const equip =  {
@@ -75,7 +97,8 @@ const equip =  {
         flexDirection: "row",
         flexWrap: "wrap",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        margin: "0 15%"
     }),
     itemContainer: css({
         display: "flex",
@@ -99,13 +122,55 @@ const equip =  {
     item: css({
         margin: "0.25em",
     }),
-    checkbox:css({
+    checkbox: css({
         height: "1em",
         width: "1em",
         border: "1px solid lightgray",
         cursor: "pointer",
     })
 }
+
+const endbutton = {
+    container:css({
+        display: "flex",
+        flexDirection: "row",
+    }),
+    wrapper: css({
+      margin: '2em',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1,
+    }),
+    button: css({
+      width: '130px',
+      height: '50px',
+      borderRadius: '5px',
+      fontSize: '16px',
+      color: 'white',
+      margin: '1em',
+      backgroundColor: colors.PRIMARY,
+      border: 'none',
+    }),
+    buttonInverse: css({
+      width: '130px',
+      height: '50px',
+      borderRadius: '5px',
+      fontSize: '16px',
+      margin: '1em',
+      color: colors.PRIMARY,
+      borderColor: colors.PRIMARY,
+    }),
+  }
+
+  const summary = {
+      container:css({
+            display:"flex", 
+            flexDirection:"row",
+            flexWrap: "wrap",
+      })
+  }
 
 export default RegistrationFormTwo;
 

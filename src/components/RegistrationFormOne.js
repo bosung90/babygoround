@@ -301,9 +301,6 @@ export default withRouter(
           </div>
 
           <div className={endbutton.wrapper}>
-            {/* <button className={endbutton.buttonInverse} type="submit">
-            Previous
-          </button> */}
             <button type="submit" className={endbutton.button}>
               Next
             </button>
@@ -465,7 +462,6 @@ const endbutton = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
   }),
   button: css({
     width: '130px',

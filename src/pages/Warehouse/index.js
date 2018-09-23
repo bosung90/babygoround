@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { colors } from 'common'
-import { View, Button, Input, Label } from 'components'
+import { View, Button, Input, Heading } from 'components'
 import InventoryItem from './InventoryItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
@@ -29,7 +29,7 @@ export default class Warehouse extends React.Component {
               <FontAwesomeIcon icon={faUser} color={colors.PRIMARY} size="9x" />
             </View>
             <View column fill>
-              <Label label="USER INFORMATION" />
+              <Heading label="USER INFORMATION" />
               <UserInfoRow
                 label="First Name"
                 value={<Select selector={state => state.User.firstName} />}
@@ -55,7 +55,7 @@ export default class Warehouse extends React.Component {
             </View>
           </View>
           <View column mv={30} pl={10}>
-            <Label label="BABY INFORMATION" />
+            <Heading label="BABY INFORMATION" />
             <UserInfoRow
               label="Date of Birth"
               value={<Select selector={state => state.User.dateOfBirthBaby} />}
@@ -63,7 +63,7 @@ export default class Warehouse extends React.Component {
           </View>
 
           <View column pl={10}>
-            <Label label="REQUESTED ITEMS" />
+            <Heading label="REQUESTED ITEMS" />
             <View row wrap mv={16}>
               <Select
                 selector={state => {
@@ -94,7 +94,7 @@ export default class Warehouse extends React.Component {
           </View>
 
           <View column pl={10}>
-            <Label label="CHECKED OUT ITEMS" />
+            <Heading label="CHECKED OUT ITEMS" />
             <Select
               selector={state => {
                 if (!state.User.checkedOutEquipments) return null
@@ -121,7 +121,7 @@ export default class Warehouse extends React.Component {
             </Select>
           </View>
           <View column pl={10}>
-            <Label label="APPOINTMENTS" />
+            <Heading label="APPOINTMENTS" />
           </View>
         </View>
       </View>

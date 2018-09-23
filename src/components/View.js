@@ -144,24 +144,33 @@ const styles = {
     justifyContent: 'center',
   }),
   alignStart: css({
-    alignItems: 'flex-start',
+    alignItems: 'start',
   }),
   alignCenter: css({
     alignItems: 'center',
   }),
   alignEnd: css({
-    alignItems: 'flex-end',
+    alignItems: 'end',
   }),
   alignStretch: css({
     alignItems: 'stretch',
   }),
   justifyStart: css({
-    justifyContent: 'flex-start',
+    justifyContent: 'start',
+  }),
+  justifyCenter: css({
+    justifyContent: 'center',
   }),
   justifyBetween: css({
     justifyContent: 'space-between',
   }),
+  justifyAround: css({
+    justifyContent: 'space-around',
+  }),
+  justifyEvenly: css({
+    justifyContent: 'space-evenly',
+  }),
   justifyEnd: css({
-    justifyContent: 'flex-end',
+    justifyContent: 'end',
   }),
 }

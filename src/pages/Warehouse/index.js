@@ -111,7 +111,11 @@ export default class Warehouse extends React.Component {
                 if (!checkedOutEquipmentsWithData)
                   return <View>Loading...</View>
                 return checkedOutEquipmentsWithData.map(equipment => (
-                  <InventoryItem key={equipment.id} name={equipment.type} />
+                  <InventoryItem
+                    key={equipment.id}
+                    id={equipment.id}
+                    name={equipment.type}
+                  />
                 ))
               }}
             </Select>

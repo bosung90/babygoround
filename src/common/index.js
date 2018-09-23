@@ -5,3 +5,7 @@ export const colors = {
   LABEL: '#979797',
   LIGHTGRAY: '#979797',
 }
+
+export const constants = {
+  DEFAULT_USER_ID: 'pDvyJvfpwpUyo3NPc5nG',
+}

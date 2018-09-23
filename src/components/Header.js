@@ -24,6 +24,7 @@ export default class Header extends React.Component {
 
 const styles = {
   header: css({
+<<<<<<< Updated upstream
     borderBottom: '1px solid',
     borderColor: colors.PRIMARY,
   }),
@@ -31,5 +32,7 @@ const styles = {
     alignSelf: 'flex-start',
     backgroundColor: 'transparent',
     width: 200,
+=======
+>>>>>>> Stashed changes
   }),
 }

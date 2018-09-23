@@ -11,12 +11,27 @@ import UserInfoRow from './UserInfoRow'
 import { firestore } from 'firebase/config'
 
 export default class Warehouse extends React.Component {
+  state = { checkedOutEquipments: [], requestedEquipments: [] }
+  // static getDerivedStateFromProps(props, state) {
+
+  // }
   componentDidMount() {
     firestore
       .collection('Users')
       .doc('pDvyJvfpwpUyo3NPc5nG')
       .get()
       .then(doc => {
+        const userData = doc.data()
+        const {
+          checkedOutEquipments: checkedOutEquipmentIds,
+          requestedEquipments: requestedEquipmentIds,
+        } = userData
+
+        const checkedOutEquipments = []
+        const requestedEquipments = []
+
+        firestore.collection('Equipments').doc()
+
         console.log(doc.data())
       })
   }
@@ -40,14 +55,16 @@ export default class Warehouse extends React.Component {
             </View>
             <View column fill>
               <Label label="USER INFORMATION" />
-              <UserInfoRow />
-              <UserInfoRow />
-              <UserInfoRow />
-              <UserInfoRow />
+              <UserInfoRow label="First Name" value="Jon" />
+              <UserInfoRow label="Last Name" value="Snow" />
+              <UserInfoRow label="Phone Number" value="(604)555-5555" />
+              <UserInfoRow label="Email Address" value="jon.snow@gmail.com" />
+              <UserInfoRow label="Date of Birth" value="1978/06/24" />
             </View>
           </View>
           <View column mv={30} pl={10}>
             <Label label="BABY INFORMATION" />
+            <UserInfoRow label="Date of Birth" value="2018/11/24" />
           </View>
 
           <View column pl={10}>

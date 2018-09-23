@@ -52,11 +52,10 @@ class RegistrationFormTwo extends Component {
                                 </Select>
                             </div>
                     </div>
-
-                    <div className={endbutton.container} >
+                    <div className={endbutton.container}>
                         <div className={endbutton.wrapper}>
                             <button type="submit" className={endbutton.buttonInverse}>
-                            Previous
+                                Previous
                             </button>
                         </div>
                         <div className={endbutton.wrapper}>
@@ -64,8 +63,9 @@ class RegistrationFormTwo extends Component {
                             Next
                             </button>
                         </div>
-                    </div>
+                </div>
             </div>
+
         )
     }   
 }
@@ -97,8 +97,7 @@ const equip =  {
         flexDirection: "row",
         flexWrap: "wrap",
         alignItems: "center",
-        justifyContent: "center",
-        margin: "0 15%"
+        margin: "0 12%"
     }),
     itemContainer: css({
         display: "flex",
@@ -131,17 +130,15 @@ const equip =  {
 }
 
 const endbutton = {
-    container:css({
+    container: css({
         display: "flex",
         flexDirection: "row",
+        justifyContent: 'center',
     }),
     wrapper: css({
-      margin: '2em',
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-      justifyContent: 'center',
-      flex: 1,
     }),
     button: css({
       width: '130px',
@@ -149,9 +146,9 @@ const endbutton = {
       borderRadius: '5px',
       fontSize: '16px',
       color: 'white',
-      margin: '1em',
       backgroundColor: colors.PRIMARY,
       border: 'none',
+      margin: '1em',
     }),
     buttonInverse: css({
       width: '130px',

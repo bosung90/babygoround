@@ -4,6 +4,14 @@ import Select from 'cf-select';
 import { colors } from '../common/index';
 
 class Inventory extends Component {
+    contains(arr, val) {
+        console.log(arr[val], val);
+        for(const i in arr) {
+            if (i.id == "val") {
+                return i;
+            }
+        }
+    }
     render() {
         return(
             <div className={ styles.container }>
@@ -15,38 +23,36 @@ class Inventory extends Component {
                         { User => {
                             if(!User) return <div>Loading</div>
                             console.log(User);
+                            const items = Object.keys(User.requestedEquipmentItems)
                             return(
-                                User.requestedEquipmentItems.map((item, index) => {
-                                    console.log(item);
+                                items.map((item, index) => {
+                                    return (
+                                        <Select selector={state => state.Equipments}>
+                                            {
+                                                Equipments => {
+                                                    if(!Equipments) return <div>Loading</div>
+                                                    // const equips = Object.keys(Equipments);
+                                                    const foundItem = Equipments[item];
+                                                    return(
+                                                        <div className={ equip.wrapper }>
+                                                            <Select selector={item.imageURL !== "na" || item === "loading"}>
+                                                                <div className={equip.imageContainer}>
+                                                                    <img src={foundItem.imageURL} />
+                                                                </div>
+                                                                <div className={count.container}>
+                                                                    { foundItem.count }
+                                                                </div>
+                                                            </Select>
+                                                        </div>
+                                                    )
+                                                }
+                                            }
+                                        </Select>
+                                    )
                                 }))
                         }
 
                         }
-                    </Select>
-
-
-                    <Select selector={state=>state.Equipments}>
-                        {Equipments =>  {
-                            if(!Equipments) return <div>Loading</div>;
-                            const equipment = Object.values(Equipments)
-                            return (
-                                equipment.map((item, index) => {
-                                    return(
-                                        <div className={ equip.wrapper }>
-                                            <Select selector={item.imageURL !== "na" || item === "loading"}>
-                                                <div className={equip.imageContainer}>
-                                                    <img src={item.imageURL} />
-                                                </div>
-                                                <div className={count.container}>
-                                                    { item.count }
-                                                </div>
-                                            </Select>
-                                        </div>
-                                    )
-                                })
-                            )
-
-                        }}
                     </Select>
                 </div>
             </div>

@@ -63,12 +63,11 @@ class RegistrationFormTwo extends Component {
                 Object.keys(this.state).map((itemId, index) => {
                   return (
                     <Select key={index}>
-                      <div className={styles.text}>
+                      <div className={summary.text}>
                         {this.state[itemId] === true
                           ? Equipments[itemId].type
                           : ''}
                       </div>
-                      <div className={styles.line}>|</div>
                     </Select>
                   )
                 })
@@ -100,7 +99,7 @@ class RegistrationFormTwo extends Component {
     firestore
       .collection('Users')
       .doc(dispatch.User.getUserId())
-      .update({ requestedUserItems: this.state })
+      .update({ requestedEquipmentItems: this.state })
   }
 }
 
@@ -200,7 +199,16 @@ const summary = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    margin: '5em, 10%, 0, 10%',
   }),
+  text: css({
+    color: colors.LIGHTGRAY,
+    borderRight: '1px solid', 
+    borderColor: colors.PRIMARY,
+    paddingRight: '2em',
+    PaddingLeft: '2em',
+
+  })
 }
 
 export default RegistrationFormTwo

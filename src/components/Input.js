@@ -1,6 +1,5 @@
 import React from 'react'
 import { css } from 'react-emotion'
-import { colors } from 'common'
 import { View, Label } from 'components'
 
 class Input extends React.Component {

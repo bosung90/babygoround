@@ -7,9 +7,9 @@ export default class UserInfoRow extends React.Component {
     const { label, value, ...props } = this.props
     return (
       <View row h={25} alignCenter style={{ marginBottom: 10 }}>
-        <Label w={120} mr={35}>
-          {label}
-        </Label>
+        <View w={130} mr={35}>
+          <Label label={label} />
+        </View>
         <View>{value}</View>
       </View>
     )

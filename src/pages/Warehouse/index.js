@@ -79,8 +79,7 @@ export default class Warehouse extends React.Component {
                 }}
               >
                 {requestedEquipmentsWithData => {
-                  if (!requestedEquipmentsWithData)
-                    return <View>Loading...</View>
+                  if (!requestedEquipmentsWithData) return null
                   return requestedEquipmentsWithData.map((equipment, index) => (
                     <EquipmentItem
                       mr={index % 4 === 3 ? 0 : 70}
@@ -108,8 +107,7 @@ export default class Warehouse extends React.Component {
               }}
             >
               {checkedOutEquipmentsWithData => {
-                if (!checkedOutEquipmentsWithData)
-                  return <View>Loading...</View>
+                if (!checkedOutEquipmentsWithData) return null
                 return checkedOutEquipmentsWithData.map(equipment => (
                   <InventoryItem
                     key={equipment.id}

@@ -5,6 +5,7 @@ import { colors } from 'common'
 import { headerLogo } from 'images'
 import { withRouter } from 'react-router-dom'
 import Select from 'cf-select'
+import { auth } from 'firebase/config'
 
 export default withRouter(
   class Header extends React.Component {
@@ -20,7 +21,7 @@ export default withRouter(
                 Profile
               </Button>
               <Button
-                onClick={() => this.props.history.push('./auth')}
+                onClick={() => auth.signOut()}
                 secondary
                 className={{ width: 100, height: 40 }}
               >

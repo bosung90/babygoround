@@ -1,5 +1,5 @@
 import React from 'react'
-import { firestore } from 'firebase/config'
+import { firestore, auth } from 'firebase/config'
 import { dispatch } from 'store'
 
 export default class FirestoreSync extends React.Component {
@@ -17,16 +17,39 @@ export default class FirestoreSync extends React.Component {
         dispatch.Equipments.setEquipments(equipments)
       })
 
-    this.unsubsUser = firestore
-      .collection('Users')
-      .doc('pDvyJvfpwpUyo3NPc5nG')
-      .onSnapshot(doc => {
-        const userData = doc.data()
-        dispatch.User.setUser(userData)
-      })
+    this.unsubsAuth = auth.onAuthStateChanged(user => {
+      if (user) {
+        const { email, uid } = user
+        firestore
+          .collection('Users')
+          .doc(uid)
+          .set(
+            {
+              id: uid,
+              email,
+            },
+            { merge: true }
+          )
+          .then(() => {
+            this.unsubsUser && this.unsubsUser()
+            this.unsubsUser = firestore
+              .collection('Users')
+              .doc(uid)
+              .onSnapshot(doc => {
+                const userData = doc.data()
+                dispatch.User.setUser(userData)
+              })
+          })
+      } else {
+        this.unsubsUser && this.unsubsUser()
+        dispatch.User.unsetUser()
+      }
+    })
   }
   componentWillUnmount() {
     this.unsubsEquipments && this.unsubsEquipments()
+    this.unsubsAuth && this.unsubsAuth()
+    this.unsubsUser && this.unsubsUser()
   }
   render() {
     return null

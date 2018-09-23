@@ -1,37 +1,64 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import App from './App'
 import registerServiceWorker from './registerServiceWorker'
 import { Router, Route, Switch, Redirect } from 'react-router-dom'
 import history from './history'
-import { Header } from 'components'
+import { Header, View } from 'components'
+import Select from 'cf-select'
 import { Provider } from 'react-redux'
-import { store } from 'store'
+import { store, dispatch } from 'store'
 import * as pages from 'pages'
 import RegistrationFormOne from './components/RegistrationFormOne'
 import RegistrationFormTwo from './components/RegistrationFormTwo'
 import FirestoreSync from './FirestoreSync'
-import View from './components/View'
+import Success from './components/Success'
 
 ReactDOM.render(
   <Provider store={store}>
     <View fill column>
       <FirestoreSync />
-      <Router history={history}>
-        <div>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={() => <Redirect to="/auth" />} />
-            <Route exact path="/auth" component={pages.Auth} />
-            <Route exact path="/form" component={pages.Form} />
-            <Route exact path="/calendar" component={pages.Calendar} />
-            <Route exact path="/register" component={RegistrationFormOne} />
-            <Route exact path="/warehouse" component={pages.Warehouse} />
-            <Route exact path="/register2" component={RegistrationFormTwo} />
-          </Switch>
-        </div>
-      </Router>
+      <Select
+        selector={{
+          isLoggedIn: dispatch.User.getIsLoggedIn,
+          loading: state => state.User.loading || state.Equipments.loading,
+        }}
+      >
+        {({ isLoggedIn, loading }) => {
+          if (loading) return <View>Loading...</View>
+          return isLoggedIn ? (
+            <Router history={history}>
+              <div>
+                <Header />
+                <Switch>
+                  <Route
+                    exact
+                    path="/"
+                    component={() => <Redirect to="/form" />}
+                  />
+                  <Route exact path="/auth" component={pages.Auth} />
+                  <Route exact path="/form" component={pages.Form} />
+                  <Route exact path="/calendar" component={pages.Calendar} />
+                  <Route
+                    exact
+                    path="/register"
+                    component={RegistrationFormOne}
+                  />
+                  <Route exact path="/warehouse" component={pages.Warehouse} />
+                  <Route
+                    exact
+                    path="/register2"
+                    component={RegistrationFormTwo}
+                  />
+                  <Route exact path="/success" component={Success} />
+                </Switch>
+              </div>
+            </Router>
+          ) : (
+            <pages.Auth />
+          )
+        }}
+      </Select>
     </View>
   </Provider>,
   document.getElementById('root')

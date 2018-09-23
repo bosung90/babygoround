@@ -1,8 +1,10 @@
 export default {
-  state: {},
+  state: {
+    loading: true,
+  },
   reducers: {
     setEquipments(state, payload) {
-      return payload
+      return { ...payload, loading: false }
     },
   },
 }

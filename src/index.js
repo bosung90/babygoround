@@ -28,6 +28,7 @@ ReactDOM.render(
           <Route exact path="/form" component={pages.Form} />
           <Route exact path="/calendar" component={pages.Calendar} />
           <Route exact path="/register" component={RegistrationFormOne} />
+          <Route exact path="/warehouse" component={pages.Warehouse} />
 
           {/* <Route path="/something" component={add your component here}/> */}
         </Switch>

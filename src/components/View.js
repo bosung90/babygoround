@@ -36,10 +36,10 @@ export default class View extends React.Component {
 
       switch (key) {
         case 'mh':
-          style.push(css({ marginHorizontal: props[key] }))
+          style.push(css({ marginLeft: props[key], marginRight: props[key] }))
           break
         case 'mv':
-          style.push(css({ marginVertical: props[key] }))
+          style.push(css({ marginTop: props[key], marginBottom: props[key] }))
           break
         case 'mt':
           style.push(css({ marginTop: props[key] }))
@@ -145,6 +145,9 @@ const styles = {
   }),
   selfStart: css({
     alignSelf: 'start',
+  }),
+  selfEnd: css({
+    alignSelf: 'end',
   }),
   alignStart: css({
     alignItems: 'flex-start',

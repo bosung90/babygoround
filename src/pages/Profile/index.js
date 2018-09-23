@@ -8,6 +8,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import UserInfoRow from './UserInfoRow'
 import Select from 'cf-select'
 import EquipmentItem from './EquipmentItem'
+import Equipment from '../../components/Equipment'
 
 export default class Warehouse extends React.Component {
   render() {
@@ -111,11 +112,7 @@ export default class Warehouse extends React.Component {
                 if (!checkedOutEquipmentsWithData)
                   return <View>Loading...</View>
                 return checkedOutEquipmentsWithData.map(equipment => (
-                  <InventoryItem
-                    key={equipment.id}
-                    id={equipment.id}
-                    name={equipment.type}
-                  />
+                  <Equipment equipment={equipment} />
                 ))
               }}
             </Select>

@@ -17,7 +17,11 @@ export default withRouter(
               <img alt="header-logo" src={headerLogo} />
             </Button>
             <View row w={220} mr={20} justifyBetween>
-              <Button secondary className={{ width: 100, height: 40 }}>
+              <Button
+                onClick={() => this.props.history.push('/profile')}
+                secondary
+                className={{ width: 100, height: 40 }}
+              >
                 Profile
               </Button>
               <Button

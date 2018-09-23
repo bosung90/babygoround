@@ -131,6 +131,9 @@ const styles = {
     display: 'flex',
     flex: 1,
   }),
+  wrap: css({
+    flexWrap: 'wrap',
+  }),
   row: css({
     display: 'flex',
     flexDirection: 'row',

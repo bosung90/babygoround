@@ -31,7 +31,7 @@ ReactDOM.render(
             <Route exact path="/calendar" component={pages.Calendar} />
             <Route exact path="/register" component={RegistrationFormOne} />
             <Route exact path="/warehouse" component={pages.Warehouse} />
-            <Route exact path="/test" component={RegistrationFormTwo} />
+            <Route exact path="/register2" component={RegistrationFormTwo} />
           </Switch>
         </div>
       </Router>

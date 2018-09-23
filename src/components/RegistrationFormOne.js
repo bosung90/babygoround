@@ -3,6 +3,7 @@ import { css } from 'react-emotion'
 import { colors } from '../common/index'
 import Select from 'cf-select'
 import { withRouter } from 'react-router-dom'
+import { firestore } from 'firebase/config'
 
 export default withRouter(
   class RegistrationFormOne extends Component {
@@ -16,9 +17,30 @@ export default withRouter(
     }
     handleSubmit = e => {
       e.preventDefault()
-      //Submit on the button something will happen
+      const {
+        DOB: dateOfBirthBaby,
+        firstName,
+        lastName,
+        phoneNum: phoneNumber,
+        email,
+      } = this.state
 
-      //Execution
+      firestore
+        .collection('Users')
+        .doc('pDvyJvfpwpUyo3NPc5nG')
+        .set(
+          {
+            dateOfBirthBaby,
+            firstName,
+            lastName,
+            phoneNumber,
+            email,
+          },
+          { merge: true }
+        )
+        .then(() => {
+          this.props.history.push('/register2')
+        })
 
       console.log('Submit has been pressed')
     }

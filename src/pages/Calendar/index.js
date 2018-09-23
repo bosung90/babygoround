@@ -34,7 +34,7 @@ export default withRouter(
       return (
         <View column h={1024 - 75} alignCenter>
           <View w={750}>
-            <Progress pagenum={2} />
+            <Progress pagenum={3} />
             <View column style={{ marginTop: 20 }}>
               <View style={{ color: colors.PRIMARY }}>SET AN APPOINTMENT</View>
               <View style={{ color: colors.PRIMARY }}>

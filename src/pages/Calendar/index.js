@@ -1,7 +1,7 @@
 import React from 'react'
 import { css } from 'react-emotion'
 import { colors } from 'common'
-import { View, Button, Input } from 'components'
+import { View, Button, Input, Progress } from 'components'
 import { dispatch } from 'store'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons'
@@ -32,7 +32,8 @@ export default class Calendar extends React.Component {
     return (
       <View column h={1024 - 75} alignCenter>
         <View w={750}>
-          <View column>
+          <Progress pagenum={2} />
+          <View column style={{ marginTop: 20 }}>
             <View style={{ color: colors.PRIMARY }}>SET AN APPOINTMENT</View>
             <View style={{ color: colors.PRIMARY }}>
               Select a date to set an appointment to pick up your items.

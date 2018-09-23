@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import UserInfoRow from './UserInfoRow'
 import Select from 'cf-select'
-import EquipmentItem from './EquipmentItem'
 import Equipment from '../../components/Equipment'
 
 export default class Warehouse extends React.Component {
@@ -83,10 +82,10 @@ export default class Warehouse extends React.Component {
                   if (!requestedEquipmentsWithData)
                     return <View>Loading...</View>
                   return requestedEquipmentsWithData.map((equipment, index) => (
-                    <EquipmentItem
+                    <Equipment
                       mr={index % 4 === 3 ? 0 : 70}
                       key={equipment.id}
-                      name={equipment.type}
+                      equipment={equipment}
                     />
                   ))
                 }}
@@ -111,8 +110,12 @@ export default class Warehouse extends React.Component {
               {checkedOutEquipmentsWithData => {
                 if (!checkedOutEquipmentsWithData)
                   return <View>Loading...</View>
-                return checkedOutEquipmentsWithData.map(equipment => (
-                  <Equipment equipment={equipment} />
+                return checkedOutEquipmentsWithData.map((equipment, index) => (
+                  <Equipment
+                    mr={index % 4 === 3 ? 0 : 70}
+                    key={equipment.id}
+                    equipment={equipment}
+                  />
                 ))
               }}
             </Select>

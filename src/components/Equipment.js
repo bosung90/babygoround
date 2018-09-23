@@ -6,20 +6,21 @@ import Select from 'cf-select'
 
 export default class Equipment extends React.Component {
   render() {
-    const { style, className, equipment, checkbox, ...props } = this.props
+    // const { style, className, equipment, checkbox, ...props } = this.props
+    const { style, className, equipment, checkbox, mr, ...props } = this.props
     return (
-      <View className={equip.itemContainer} row>
-        <View className={equip.wrapper} col>
-          <img alt={equipment.id} src={equipment.imageURL} />
-          <View className={equip.itemLabel}>{equipment.type}</View>
+      <View mr={mr} column alignCenter>
+        <View w={105} h={105}>
+          <img alt={equipment.type} src={equipment.imageURL} />
+        </View>
+        <View mt={10} className={equip.itemLabel}>
+          {equipment.type}
         </View>
         <Select selector={checkbox}>
           <input
             type="checkbox"
             className={equip.checkbox}
-            onChange={e =>
-              this.setState({ [equipment.type]: e.target.checked })
-            }
+            // onChange={e => this.setState({ [equipment.id]: e.target.checked })}
           />
         </Select>
       </View>

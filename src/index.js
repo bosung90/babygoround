@@ -27,12 +27,10 @@ ReactDOM.render(
           <Switch>
             <Route exact path="/" component={() => <Redirect to="/auth" />} />
             <Route exact path="/auth" component={pages.Auth} />
-            <Route exact path="/something" component={App} />
             <Route exact path="/form" component={pages.Form} />
             <Route exact path="/calendar" component={pages.Calendar} />
             <Route exact path="/register" component={RegistrationFormOne} />
             <Route exact path="/warehouse" component={pages.Warehouse} />
-            {/* <Route path="/something" component={add your component here}/> */}
             <Route exact path="/test" component={RegistrationFormTwo} />
           </Switch>
         </div>

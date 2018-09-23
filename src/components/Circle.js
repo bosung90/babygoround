@@ -5,12 +5,12 @@ import { colors } from 'common'
 
 export default class Circle extends React.Component {
   render() {
-    const { style, className, todo, ...props } = this.props
+    const { style, className, done, ...props } = this.props
     return (
       <View
         className={css(
-          styles.done,
-          todo === true && styles.todo,
+          styles.todo,
+          done === true && styles.done,
           className,
           style
         )}

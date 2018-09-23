@@ -24,6 +24,7 @@ export default class Auth extends React.Component {
           style={{ marginBottom: 33 }}
           label={'Password'}
           w={450}
+          type="password"
         />
         <View row>
           <Button

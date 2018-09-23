@@ -1,2 +1,2 @@
-export { default as logo } from './logo.png'
-export { default as babyGoRound } from './baby-go-round.png'
+export { default as headerLogo } from './header-logo.png'
+export { default as loginLogo } from './login-logo.png'

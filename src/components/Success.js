@@ -2,30 +2,37 @@ import React, { Component } from 'react'
 import { css } from 'react-emotion'
 import { colors } from '../common/index'
 import { Progress } from 'components'
+import { withRouter } from 'react-router-dom'
 
-class Success extends Component {
-  render() {
-    return (
-      <div>
-        <div className={style.container}>
-          <Progress pagenum={3} />
-          <img
-            className={style.image}
-            alt="check"
-            src={require('../images/checked.svg')}
-          />
-          <div className={style.header}>SUCCESS</div>
-          <div className={style.text}>
-            You have successfully registered to BabyGoRound
+export default withRouter(
+  class Success extends Component {
+    render() {
+      return (
+        <div>
+          <div className={style.container}>
+            <Progress pagenum={3} />
+            <img
+              className={style.image}
+              alt="check"
+              src={require('../images/checked.svg')}
+            />
+            <div className={style.header}>SUCCESS</div>
+            <div className={style.text}>
+              You have successfully registered to BabyGoRound
+            </div>
+            <button
+              onClick={() => this.props.history.push('/profile')}
+              type="submit"
+              className={style.profileButton}
+            >
+              Profile Page
+            </button>
           </div>
-          <button type="submit" className={style.profileButton}>
-            Profile Page
-          </button>
         </div>
-      </div>
-    )
+      )
+    }
   }
-}
+)
 
 const style = {
   container: css({
@@ -58,5 +65,3 @@ const style = {
     borderColor: colors.PRIMARY,
   }),
 }
-
-export default Success

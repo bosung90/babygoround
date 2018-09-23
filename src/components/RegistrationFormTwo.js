@@ -5,101 +5,108 @@ import { firestore } from 'firebase/config'
 import Select from 'cf-select'
 import { Progress, View } from 'components'
 import { dispatch } from 'store'
+import { withRouter } from 'react-router-dom'
 
-class RegistrationFormTwo extends Component {
-  state = {}
-  render() {
-    return (
-      <div className={styles.container}>
-        <Progress pagenum={2} />
-        <div className={styles.header}>REQUIRED ITEMS</div>
-        <div className={equip.container}>
-          <Select selector={state => state.Equipments}>
-            {Equipments => {
-              if (!Equipments) return <div>Loading</div>
-              const equipmentKeys = Object.keys(Equipments)
-              return equipmentKeys.map((itemId, index) => (
-                <Select
-                  key={index}
-                  selector={
-                    Equipments[itemId].imageURL !== 'na' && itemId !== 'loading'
-                  }
-                >
-                  <View row alignCenter>
-                    <label htmlFor={itemId}>
-                      <div className={equip.itemContainer}>
-                        <div className={equip.wrapper}>
-                          <img
-                            alt="equipment"
-                            src={Equipments[itemId].imageURL}
-                          />
-                          <div className={equip.itemLabel}>
-                            {Equipments[itemId].type}
+export default withRouter(
+  class RegistrationFormTwo extends Component {
+    state = {}
+    render() {
+      return (
+        <div className={styles.container}>
+          <Progress pagenum={2} />
+          <div className={styles.header}>REQUIRED ITEMS</div>
+          <div className={equip.container}>
+            <Select selector={state => state.Equipments}>
+              {Equipments => {
+                if (!Equipments) return <div>Loading</div>
+                const equipmentKeys = Object.keys(Equipments)
+                return equipmentKeys.map((itemId, index) => (
+                  <Select
+                    key={index}
+                    selector={
+                      Equipments[itemId].imageURL !== 'na' &&
+                      itemId !== 'loading'
+                    }
+                  >
+                    <View row alignCenter>
+                      <label htmlFor={itemId}>
+                        <div className={equip.itemContainer}>
+                          <div className={equip.wrapper}>
+                            <img
+                              alt="equipment"
+                              src={Equipments[itemId].imageURL}
+                            />
+                            <div className={equip.itemLabel}>
+                              {Equipments[itemId].type}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </label>
-                    <input
-                      type="checkbox"
-                      className={equip.checkbox}
-                      onChange={e =>
-                        this.setState({ [itemId]: e.target.checked })
-                      }
-                      id={itemId}
-                    />
-                  </View>
-                </Select>
-              ))
-            }}
-          </Select>
-        </div>
-        <div>
-          <div className={styles.header}>Summary</div>
-          <div className={summary.container}>
-            <Select selector={state => state.Equipments}>
-              {Equipments =>
-                Object.keys(this.state).map((itemId, index) => {
-                  return (
-                    <Select key={index}>
-                      <div className={summary.text}>
-                        {this.state[itemId] === true
-                          ? Equipments[itemId].type
-                          : ''}
-                      </div>
-                    </Select>
-                  )
-                })
-              }
+                      </label>
+                      <input
+                        type="checkbox"
+                        className={equip.checkbox}
+                        onChange={e =>
+                          this.setState({ [itemId]: e.target.checked })
+                        }
+                        id={itemId}
+                      />
+                    </View>
+                  </Select>
+                ))
+              }}
             </Select>
           </div>
-        </div>
+          <div>
+            <div className={styles.header}>Summary</div>
+            <div className={summary.container}>
+              <Select selector={state => state.Equipments}>
+                {Equipments =>
+                  Object.keys(this.state).map((itemId, index) => {
+                    return (
+                      <Select key={index}>
+                        <div className={summary.text}>
+                          {this.state[itemId] === true
+                            ? Equipments[itemId].type
+                            : ''}
+                        </div>
+                      </Select>
+                    )
+                  })
+                }
+              </Select>
+            </div>
+          </div>
 
-        <div className={endbutton.container}>
-          <div className={endbutton.wrapper}>
-            <button type="submit" className={endbutton.buttonInverse}>
-              Previous
-            </button>
-          </div>
-          <div className={endbutton.wrapper}>
-            <button
-              onClick={this.handleNext}
-              type="submit"
-              className={endbutton.button}
-            >
-              Next
-            </button>
+          <div className={endbutton.container}>
+            <div className={endbutton.wrapper}>
+              <button type="submit" className={endbutton.buttonInverse}>
+                Previous
+              </button>
+            </div>
+            <div className={endbutton.wrapper}>
+              <button
+                onClick={this.handleNext}
+                type="submit"
+                className={endbutton.button}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
+    }
+    handleNext = () => {
+      firestore
+        .collection('Users')
+        .doc(dispatch.User.getUserId())
+        .update({ requestedEquipmentItems: this.state })
+        .then(() => {
+          this.props.history.push('/calendar')
+        })
+    }
   }
-  handleNext = () => {
-    firestore
-      .collection('Users')
-      .doc(dispatch.User.getUserId())
-      .update({ requestedEquipmentItems: this.state })
-  }
-}
+)
 
 const styles = {
   container: css({
@@ -201,12 +208,9 @@ const summary = {
   }),
   text: css({
     color: colors.LIGHTGRAY,
-    borderRight: '1px solid', 
+    borderRight: '1px solid',
     borderColor: colors.PRIMARY,
     paddingRight: '2em',
     PaddingLeft: '2em',
-
-  })
+  }),
 }
-
-export default RegistrationFormTwo

@@ -14,7 +14,9 @@ export default withRouter(
       return (
         <div className={styles.container}>
           <Progress pagenum={2} />
-          <div className={styles.header} style={{marginTop:"2em"}}>REQUIRED ITEMS</div>
+          <div className={styles.header} style={{ marginTop: '2em' }}>
+            REQUIRED ITEMS
+          </div>
           <div className={equip.container}>
             <Select selector={state => state.Equipments}>
               {Equipments => {
@@ -33,10 +35,10 @@ export default withRouter(
                         <div className={equip.itemContainer}>
                           <div className={equip.wrapper}>
                             <div className={equip.imageContainer}>
-                                <img
+                              <img
                                 alt="equipment"
                                 src={Equipments[itemId].imageURL}
-                                />
+                              />
                             </div>
                             <div className={equip.itemLabel}>
                               {Equipments[itemId].type}
@@ -136,7 +138,7 @@ const equip = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: "center",
+    justifyContent: 'center',
     margin: '0 12%',
   }),
   itemContainer: css({
@@ -162,8 +164,8 @@ const equip = {
     margin: '0.25em',
   }),
   imageContainer: css({
-      minWidth: "100px",
-      height: "100px"
+    minWidth: '100px',
+    height: '100px',
   }),
   checkbox: css({
     height: '1em',
@@ -210,7 +212,7 @@ const summary = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    margin: '2em 10% 4em 10%',
+    margin: '1em 10% 1em 5%',
   }),
   text: css({
     color: colors.LIGHTGRAY,
